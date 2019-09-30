@@ -69,7 +69,7 @@ export default function HomeScreen() {
   );
 }
 
-HomeScreen.navigationOptions = {
+HomeScreen.navigationOpstions = {
   header: null,
 };
 

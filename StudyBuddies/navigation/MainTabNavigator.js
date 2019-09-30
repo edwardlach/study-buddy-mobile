@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import TestContainer from '../containers/TestContainer';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -67,10 +68,34 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = '';
 
+const TestStack = createStackNavigator(
+  {
+    Test: TestContainer,
+  },
+  config
+);
+
+TestStack.navigationOptions = {
+  tabBarLabel: 'Test',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+}
+
+TestStack.path = '';
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
+  TestStack,
 });
 
 tabNavigator.path = '';
