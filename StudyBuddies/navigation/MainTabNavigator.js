@@ -7,6 +7,8 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import TestContainer from '../containers/TestContainer';
+import SignUpScreen from '../screens/SignUpScreen'
+import LoginScreen from '../screens/LoginScreen'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -91,9 +93,59 @@ TestStack.navigationOptions = {
 
 TestStack.path = '';
 
+const SignUpStack = createStackNavigator(
+  {
+    SignUp: SignUpScreen,
+  },
+  config
+);
+
+SignUpStack.navigationOptions = {
+  tabBarLabel: 'SignUp',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+}
+
+SignUpStack.path = 'register';
+
+const LoginStack = createStackNavigator(
+  {
+    Login: LoginScreen,
+  },
+  config
+);
+
+LoginStack.navigationOptions = {
+  tabBarLabel: 'Log in',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+}
+
+LoginStack.path = 'login';
+
+
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
+  SignUpStack,
+  LoginStack,
   SettingsStack,
   TestStack,
 });
