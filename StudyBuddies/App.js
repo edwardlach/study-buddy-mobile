@@ -5,10 +5,14 @@ import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Provider } from 'react-redux'  // Gives entire app access to redux store
+import Amplify from 'aws-amplify';
+import awsmobile from './aws-exports';
 
 import { store } from './stores/store'
 
 import AppNavigator from './navigation/AppNavigator';
+
+Amplify.configure(awsmobile);
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);

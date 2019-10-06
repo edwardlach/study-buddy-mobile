@@ -1,0 +1,8 @@
+{
+	"auth": {
+		"studybuddiesaeac36ea": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}
