@@ -1,0 +1,19 @@
+{
+    "study": {
+        "awscloudformation": {
+            "AuthRoleName": "studybuddies-study-20191003074908-authRole",
+            "UnauthRoleArn": "arn:aws:iam::001952273251:role/studybuddies-study-20191003074908-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::001952273251:role/studybuddies-study-20191003074908-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "studybuddies-study-20191003074908-deployment",
+            "UnauthRoleName": "studybuddies-study-20191003074908-unauthRole",
+            "StackName": "studybuddies-study-20191003074908",
+            "StackId": "arn:aws:cloudformation:us-east-2:001952273251:stack/studybuddies-study-20191003074908/cf5e6180-e5d3-11e9-b1b3-02d33a13e486"
+        },
+        "categories": {
+            "auth": {
+                "studybuddiesaeac36ea": {}
+            }
+        }
+    }
+}
