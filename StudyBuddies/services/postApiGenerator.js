@@ -1,7 +1,6 @@
-import { API } from '../types/reduxTypes';
+import { API, POST_USER_COMPLETE } from '../types/reduxTypes';
 
 export const postApiGenerator = next => (route, name, headers, body) => {
-  const baseUrl = "https://uwxyuxkvg5.execute-api.us-east-1.amazonaws.com/dev"
   post = async () => {
     endpoint = API + route;
     fetch(endpoint, {
@@ -16,19 +15,7 @@ export const postApiGenerator = next => (route, name, headers, body) => {
           info: data.info,
           reduxId: data.reduxId
         });
-      }).catch((error) => {
-        console.log("Response Parse Error!");
-        next({
-          type: `${name}_FAILED`,
-          response: error.message
-        });
-      });
-    }).catch((error) => {
-      console.log("Post Error!");
-      next({
-        type: `${name}_FAILED`,
-        response: error.message
-      });
+      })
     });
   }
 

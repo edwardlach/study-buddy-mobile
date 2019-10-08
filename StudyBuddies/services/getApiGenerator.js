@@ -1,8 +1,9 @@
-import { API } from '../types/reduxTypes';
+import { API, GET_USER_COMPLETE } from '../types/reduxTypes';
 
-export const getApiGenerator = next => (route, name, headers, uuid) => {
+export const getApiGenerator = next => (route, name, headers) => {
   get = async () => {
-    endpoint = API + route + "/" + uuid;
+    endpoint = API + route;
+    console.log(endpoint);
     fetch(endpoint, {
         method: 'GET',
         headers: headers
@@ -14,18 +15,6 @@ export const getApiGenerator = next => (route, name, headers, uuid) => {
           info: data.info,
           reduxId: data.reduxId
         });
-      }).catch((error) => {
-        console.log("Response Parse Error!");
-        next({
-          type: `${name}_FAILED`,
-          response: error.message
-        });
-      });
-    }).catch((error) => {
-      console.log("Get Error!");
-      next({
-        type: `${name}_FAILED`,
-        response: error.message
       });
     });
   }

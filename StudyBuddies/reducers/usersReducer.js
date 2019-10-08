@@ -1,17 +1,19 @@
-import { ADD_USER, SET_FIRST_NAME } from '../types/reduxTypes';
+import { ADD_USER, SET_FIRST_NAME,
+  GET_USER_COMPLETE, POST_USER_COMPLETE
+} from '../types/reduxTypes';
 
 /**************** Helper Functions ****************/
 
 const addUser = (state, action) => {
   return [
-          ...state,
-          {
-            info: {
-              ...action.user
-            },
-            id: action.id
-          }
-      ];
+      ...state,
+      {
+        info: {
+          ...action.user
+        },
+        id: action.id
+      }
+  ];
 }
 
 const updateFirstName = (state, action) => {
@@ -28,6 +30,31 @@ const updateFirstName = (state, action) => {
       );
 }
 
+const getUserComplete = (state, action) => {
+  return [
+    ...state,
+    {
+      info: {
+        ...action.info,
+      },
+      id: action.reduxId,
+    },
+  ];
+}
+
+const postUserComplete = (state, action) => {
+  return state.map(user =>
+    (user.id == action.reduxId)
+    ? ({
+        info: {
+          ...action.info,
+        },
+        id: action.reduxId,
+    })
+    : user
+  );
+}
+
 
 /**************** Reducer Function ****************/
 
@@ -35,8 +62,16 @@ const users = (state = [], action) => {
   switch(action.type) {
     case ADD_USER:
       return addUser(state, action);
+      break;
     case SET_FIRST_NAME:
       return updateFirstName(state, action);
+      break;
+    case GET_USER_COMPLETE:
+      return getUserComplete(state, action);
+      break;
+    case POST_USER_COMPLETE:
+      return postUserComplete(state, action);
+      break;
     default:
       return state;
   }

@@ -1,4 +1,5 @@
 import { postApiGenerator } from './postApiGenerator';
+import { getApiGenerator } from './getApiGenerator';
 
 // import Auth from '@aws-amplify/auth';
 //
@@ -11,22 +12,22 @@ import { postApiGenerator } from './postApiGenerator';
 
 export default userService = store => next => action => {
   next(action);
-  const postApi = postApiGenerator(next);
   switch(action.type) {
     case 'POST_USER':
-      // getToken()
-      //   .then((token) => {
-      //     let headers = {
-      //       Accept: 'application/json',
-      //       Authorization: token
-      //     }
-      //     body = action.body
-      //     body['reduxId'] = action.id;
-      //     postApi('/users', 'POST_USER', headers, action.body)
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
+      const postApi = postApiGenerator(next);
+      body = action.body
+      body['reduxId'] = action.id;
+      let postHeaders = {
+        Accept: 'application/json',
+      }
+      postApi('/test', action.type, postHeaders, action.body)
+      break;
+    case 'GET_USER':
+      const getApi = getApiGenerator(next);
+      let getHeaders = {
+        Accept: 'application/json',
+      }
+      getApi('/test', action.type, getHeaders);
       break;
   }
 }

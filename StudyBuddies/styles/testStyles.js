@@ -12,7 +12,12 @@ const TestStyles = StyleSheet.create({
   },
   testButton: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'blue',
+  },
+  userText: {
+    flex: 1,
+    backgroundColor: 'green',
+    color: 'black',
   },
   label: {
     color: 'black',

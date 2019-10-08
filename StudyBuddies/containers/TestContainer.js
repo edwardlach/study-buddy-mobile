@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setFirstName } from '../actions/userActions'
+import { setFirstName, getUser, postUser } from '../actions/userActions'
 import TestScreen from '../screens/TestScreen'
 
 const mapStateToProps = state => {
@@ -10,8 +10,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onPress: (id, firstName) => {
-      dispatch(setFirstName(id, firstName));
+    onPress: (id, user) => {
+      // dispatch(setFirstName(id, firstName));
+      dispatch(postUser(id, user));
     },
   }
 }
