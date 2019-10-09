@@ -12,17 +12,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-<<<<<<< HEAD
     onPress: (id, user) => {
       // dispatch(setFirstName(id, firstName));
       dispatch(postUser(id, user));
-=======
-    navigate: (navigation) => {
-      navigation.navigate("Home");
-    },
-    onPress: (id, firstName) => {
-      dispatch(setFirstName(id, firstName));
->>>>>>> amplify
     },
     signIn: (email, password) => {
       Auth.signIn(email, password)
