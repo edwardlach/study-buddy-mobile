@@ -5,6 +5,7 @@ import TestScreen from '../screens/TestScreen'
 const mapStateToProps = state => {
   return {
     users: state.users,
+    name: state.name
   }
 }
 

@@ -1,46 +1,43 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
     View, Button, TextInput, StyleSheet
 } from 'react-native'
 
 
-export default class SignUpScreen extends React.Component {
-    
-    state = {
-        name: '', password: '', email: ''
-    }
-    onChangeText = (key, val) => {
-        this.setState({ [key]: val })
-    }
-    render() {
-        const {navigate} = this.props.navigation;
-        return (
-            <View style={styles.container}>
-                <TextInput style={styles.input}
-                    placeholder='Full Name'
-                    autoCapitalize="words"
-                    textContentType="name"
-                    onChangeText={val => this.onChangeText('name', val)} />
-                <TextInput style={styles.input}
-                    placeholder='Email'
-                    textContentType="emailAddress"
-                    onChangeText={val => this.onChangeText('email', val)} />
-                <TextInput style={styles.input}
-                    placeholder='Password'
-                    textContentType="password"
-                    secureTextEntry={true}
-                    onChangeText={val => this.onChangeText('password', val)} />
-                <Button
-                    title="Sign Up"
-                />
-                <Button
+const SignUpScreen = ({ onSubmit, onChangeText }) => {
+    return (
+        <View style={styles.container}>
+
+            <TextInput style={styles.input}
+                placeholder='Full Name'
+                autoCapitalize="words"
+                textContentType="name"
+                onChangeText={val => onChangeText('name', val)} />
+
+            <TextInput style={styles.input}
+                placeholder='Email'
+                textContentType="emailAddress"
+                onChangeText={val => onChangeText('email', val)} />
+
+            <TextInput style={styles.input}
+                placeholder='Password'
+                textContentType="password"
+                secureTextEntry={true}
+                onChangeText={val => onChangeText('password', val)} />
+
+            <Button
+                title="Sign Up"
+                onPress = {()=> console.log('name' , this.state.name)}
+            />
+
+            <Button
                 color="#e65058"
                 margin="10"
-                title = "Already Have An Account?"
-                onPress={() => navigate('Login')}/>
-            </View>
-        )
-    }
+                title="Already Have An Account?"
+                />
+                
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -65,3 +62,5 @@ const styles = StyleSheet.create({
 SignUpScreen.navigationOptions = {
     title: 'SignUp',
 };
+
+export default SignUpScreen;

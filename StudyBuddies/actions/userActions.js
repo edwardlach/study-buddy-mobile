@@ -1,4 +1,4 @@
-import { ADD_USER, SET_FIRST_NAME } from '../types/reduxTypes';
+import { ADD_USER, SET_FIRST_NAME, REGISTRATION, FORM } from '../types/reduxTypes';
 
 let nextUserId = 0
 export const addUser = (user) => {

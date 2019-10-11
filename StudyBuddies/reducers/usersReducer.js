@@ -4,7 +4,7 @@ import { ADD_USER, SET_FIRST_NAME } from '../types/reduxTypes';
 
 const addUser = (state, action) => {
   return [
-          ...state,
+          ...state.users,
           {
             info: {
               ...action.user
@@ -15,7 +15,7 @@ const addUser = (state, action) => {
 }
 
 const updateFirstName = (state, action) => {
-  return state.map(user =>
+  return state.users.map(user =>
           (user.id == action.id)
           ? ({
             id: user.id,

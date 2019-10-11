@@ -7,8 +7,8 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import TestContainer from '../containers/TestContainer';
-import SignUpScreen from '../screens/SignUpScreen'
 import LoginScreen from '../screens/LoginScreen'
+import SignUpContainer from '../containers/SignUpContainer';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -95,7 +95,7 @@ TestStack.path = '';
 
 const SignUpStack = createStackNavigator(
   {
-    SignUp: SignUpScreen,
+    SignUp: SignUpContainer,
   },
   config
 );
@@ -114,7 +114,7 @@ SignUpStack.navigationOptions = {
   ),
 }
 
-SignUpStack.path = 'register';
+SignUpStack.path = 'signup';
 
 const LoginStack = createStackNavigator(
   {
