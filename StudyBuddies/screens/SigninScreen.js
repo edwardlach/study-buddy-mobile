@@ -5,20 +5,16 @@ import {
 import registrationStyles from '../styles/RegistrationStyles'
 import NavigationService from '../services/NavigationService'
 
-const RegistrationScreen = ({ onSubmit, onChangeText }) => {
+
+const SigninScreen = ({ onSubmit, onChangeText }) => {
     return (
         <View style={registrationStyles.container}>
 
             <View style={registrationStyles.titleView}>
-                <Text style={registrationStyles.title}>REGISTER</Text>
+                <Text style={registrationStyles.title}>Sign in</Text>
             </View>
 
             <View style={registrationStyles.form}>
-                <TextInput style={registrationStyles.input}
-                    placeholder='Full Name'
-                    autoCapitalize="words"
-                    textContentType="name"
-                    onChangeText={val => onChangeText('name', val)} />
 
                 <TextInput style={registrationStyles.input}
                     placeholder='Email'
@@ -35,7 +31,7 @@ const RegistrationScreen = ({ onSubmit, onChangeText }) => {
             <View style={registrationStyles.actions}>
                 <View style={registrationStyles.buttonWrapper}>
                     <Button
-                        title="Sign Up"
+                        title="Sign In"
                         onPress={() => onSubmit()}
                     />
                 </View>
@@ -43,19 +39,16 @@ const RegistrationScreen = ({ onSubmit, onChangeText }) => {
                 <View style={registrationStyles.buttonWrapper}>
                     <Button
                         color="#e65058"
-                        title="Already Have An Account?"
+                        title="Don't have an account yet?"
                     />
                 </View>
             </View>
-
-
         </View>
     )
 }
 
-RegistrationScreen.navigationOptions = {
-    title: 'register',
+SigninScreen.navigationOptions = {
+    title: 'signin',
 };
 
-
-export default RegistrationScreen;
+export default SigninScreen;

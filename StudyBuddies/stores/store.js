@@ -4,16 +4,20 @@ import logger from 'redux-logger'
 import userService from '../services/userService'
 
 const initialState = {
-    users: [
-      {
-        id:  0,
-        info: {
-          email: 'edl5040@psu.edu',
-          firstName: 'Edward',
-          lastName: 'Lach'
-        }
+  users: [
+    {
+      id: 0,
+      info: {
+        email: 'edl5040@psu.edu',
+        firstName: 'Edward',
+        lastName: 'Lach'
       }
-    ],
+    }
+  ],
+  forms: {
+    registration: {},
+    signin: {}
+  }
 };
 
 const middlewares = [

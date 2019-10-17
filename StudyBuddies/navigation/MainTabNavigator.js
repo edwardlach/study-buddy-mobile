@@ -7,7 +7,8 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import TestContainer from '../containers/TestContainer';
-import RegistrationScreen from'../screens/RegistrationScreen';
+import RegistrationContainer from '../containers/RegistrationContainer'
+import SigninContainer from '../containers/SigninContainer'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -95,11 +96,10 @@ TestStack.path = '';
 
 const RegistrationStack = createStackNavigator(
   {
-    Registration: RegistrationScreen,
+    Registration: RegistrationContainer,
   },
   config
 );
-
 RegistrationStack.navigationOptions = {
   tabBarLabel: 'Register',
   tabBarIcon: ({ focused }) => (
@@ -113,15 +113,37 @@ RegistrationStack.navigationOptions = {
     />
   ),
 }
-
 RegistrationStack.path = 'register';
+
+
+const SigninStack = createStackNavigator(
+  {
+    Signin: SigninContainer,
+  },
+  config
+);
+SigninStack.navigationOptions = {
+  tabBarLabel: 'Sign In',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+}
+SigninStack.path = 'signin';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
   TestStack,
-  RegistrationStack
+  RegistrationStack,
+  SigninStack
 });
 
 tabNavigator.path = '';

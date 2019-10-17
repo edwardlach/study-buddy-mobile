@@ -1,17 +1,17 @@
-import { regValueChange } from '../actions/formActions'
-import RegistrationScreen from '../screens/RegistrationScreen'
+import { signinValueChange } from '../actions/formActions'
+import SigninScreen from '../screens/SigninScreen'
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => {
     return {
-        form: state.forms.registration,
+        form: state.forms.signin,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onChangeText: (prop, val) => {
-            dispatch(regValueChange(prop, val));
+            dispatch(signinValueChange(prop, val));
         }
     }
 }
@@ -19,4 +19,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(RegistrationScreen)
+)(SigninScreen)
