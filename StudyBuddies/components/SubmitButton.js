@@ -8,12 +8,12 @@ import {
 
 import ComponentStyles from '../styles/componentStyles'
 
-const SubmitButton = ({label, buttonPressed, data}) => {
+const SubmitButton = ({label, buttonPressed, data, navigation}) => {
   return (
     <View style={ComponentStyles.buttonContainer}>
       <TouchableOpacity
         style={ComponentStyles.submitButton}
-        onPress={() => buttonPressed(data)}>
+        onPress={() => buttonPressed(data, navigation)}>
         <Text style={ComponentStyles.buttonLabel}>{label}</Text>
       </TouchableOpacity>
     </View>

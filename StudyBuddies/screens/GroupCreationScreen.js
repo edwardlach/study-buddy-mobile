@@ -12,7 +12,8 @@ import DateInput from '../components/DateInput'
 import SubmitButton from '../components/SubmitButton'
 import { SUBJECT, UNIVERSITY, START_DATE, END_DATE } from '../types/formTypes'
 
-const GroupCreationScreen = ({textChanged, group, dateChanged, buttonPressed, selected}) => {
+const GroupCreationScreen = ({textChanged, group, dateChanged, buttonPressed,
+  selected, navigation}) => {
   return (
     <View style={GroupStyles.container}>
       <TextInputField
@@ -40,6 +41,7 @@ const GroupCreationScreen = ({textChanged, group, dateChanged, buttonPressed, se
       <SubmitButton
         label="Create"
         buttonPressed={buttonPressed}
+        navigation={navigation}
         data={group} />
     </View>
   );

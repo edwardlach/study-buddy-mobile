@@ -7,6 +7,8 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import GroupCreationContainer from '../containers/GroupCreationContainer';
+import SearchContainer from '../containers/SearchContainer';
+import ResultsContainer from '../containers/ResultsContainer';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -68,15 +70,18 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = '';
 
-const GroupCreationStack = createStackNavigator(
+const JoinGroupStack = createStackNavigator(
   {
+    GroupSearch: SearchContainer,
+    GroupResults: ResultsContainer,
     GroupCreation: GroupCreationContainer,
+
   },
   config
 );
 
-GroupCreationStack.navigationOptions = {
-  tabBarLabel: 'Create Study Group',
+JoinGroupStack.navigationOptions = {
+  tabBarLabel: 'Join Group',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -89,13 +94,13 @@ GroupCreationStack.navigationOptions = {
   ),
 }
 
-GroupCreationStack.path = '';
+JoinGroupStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
-  GroupCreationStack,
+  JoinGroupStack,
 });
 
 tabNavigator.path = '';

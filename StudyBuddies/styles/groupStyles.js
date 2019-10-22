@@ -10,6 +10,16 @@ const GroupStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  checkbox: {
+    marginTop: 13,
+    backgroundColor: 'white',
+    borderColor: 'transparent',
+  },
+  headerText: {
+    fontSize: 40,
+    textAlign: 'center',
+    padding: 20,
+  },
 });
 
 export default GroupStyles;
