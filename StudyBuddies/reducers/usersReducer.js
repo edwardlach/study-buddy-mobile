@@ -18,16 +18,16 @@ const addUser = (state, action) => {
 
 const updateFirstName = (state, action) => {
   return state.map(user =>
-          (user.id == action.id)
-          ? ({
-            id: user.id,
-            info: {
-              ...user.info,
-              firstName: action.firstName
-            },
-          })
-          : user
-      );
+    (user.id == action.id)
+      ? ({
+        id: user.id,
+        info: {
+          ...user.info,
+          firstName: action.firstName
+        },
+      })
+      : user
+  );
 }
 
 const getUserComplete = (state, action) => {
@@ -59,7 +59,7 @@ const postUserComplete = (state, action) => {
 /**************** Reducer Function ****************/
 
 const users = (state = [], action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ADD_USER:
       return addUser(state, action);
       break;

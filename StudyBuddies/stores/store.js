@@ -4,29 +4,33 @@ import logger from 'redux-logger'
 import userService from '../services/userService'
 
 const initialState = {
-    users: [
-      {
-        id:  0,
-        info: {
-          email: 'edl5040@psu.edu',
-          firstName: 'Edward',
-          lastName: 'Lach'
-        }
+  users: [
+    {
+      id: 0,
+      info: {
+        email: 'edl5040@psu.edu',
+        firstName: 'Edward',
+        lastName: 'Lach'
       }
-    ],
-    newGroup: {
-      startDate: new Date(Date.now()),
-      endDate: new Date(Date.now()),
-      startDateSelected: false,
-      startDateSelectedCount: 0,
-      endDateSelected: false,
-      endDateSelectedCount: 0,
-    },
-    groupSearch: {
-      searchTerm: "",
-      isUniversityRestricted: false,
-      results: [],
     }
+  ],
+  newGroup: {
+    startDate: new Date(Date.now()),
+    endDate: new Date(Date.now()),
+    startDateSelected: false,
+    startDateSelectedCount: 0,
+    endDateSelected: false,
+    endDateSelectedCount: 0,
+  },
+  groupSearch: {
+    searchTerm: "",
+    isUniversityRestricted: false,
+    results: [],
+  },
+  forms: {
+    registration: {},
+    signin: {}
+  }
 };
 
 const middlewares = [
