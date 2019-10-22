@@ -14,6 +14,14 @@ const initialState = {
         }
       }
     ],
+    newGroup: {
+        startDate: new Date(Date.now()),
+        endDate: new Date(Date.now()),
+        startDateSelected: false,
+        startDateSelectedCount: 0,
+        endDateSelected: false,
+        endDateSelectedCount: 0,
+    }
 };
 
 const middlewares = [

@@ -6,7 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import TestContainer from '../containers/TestContainer';
+import GroupCreationContainer from '../containers/GroupCreationContainer';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -68,15 +68,15 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = '';
 
-const TestStack = createStackNavigator(
+const GroupCreationStack = createStackNavigator(
   {
-    Test: TestContainer,
+    GroupCreation: GroupCreationContainer,
   },
   config
 );
 
-TestStack.navigationOptions = {
-  tabBarLabel: 'Test',
+GroupCreationStack.navigationOptions = {
+  tabBarLabel: 'Create Study Group',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -89,13 +89,13 @@ TestStack.navigationOptions = {
   ),
 }
 
-TestStack.path = '';
+GroupCreationStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
-  TestStack,
+  GroupCreationStack,
 });
 
 tabNavigator.path = '';
