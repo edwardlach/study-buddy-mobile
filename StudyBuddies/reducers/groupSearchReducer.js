@@ -1,4 +1,5 @@
-import { UPDATE_SEARCH_TERM, RESTRICT_TO_UNIVERSITY } from '../types/reduxTypes'
+import { UPDATE_SEARCH_TERM, RESTRICT_TO_UNIVERSITY,
+  GET_GROUP_RESULTS_COMPLETE } from '../types/reduxTypes'
 
 /**************** Helper Functions ****************/
 
@@ -22,6 +23,15 @@ const restrictToUniversity = (state, action) => {
   }
 }
 
+const getGroupResultsComplete = (state, action) => {
+  return {
+    ...state,
+    results: [
+      ...action.results
+    ]
+  }
+}
+
 
 /**************** Reducer Function ****************/
 
@@ -32,6 +42,9 @@ const groupSearch = (state = [], action) => {
       break;
     case RESTRICT_TO_UNIVERSITY:
       return restrictToUniversity(state, action);
+      break;
+    case GET_GROUP_RESULTS_COMPLETE:
+      return getGroupResultsComplete(state, action);
       break;
     default:
       return state;

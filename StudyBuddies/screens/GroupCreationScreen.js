@@ -11,18 +11,22 @@ import TextInputField from '../components/TextInputField'
 import DateInput from '../components/DateInput'
 import SubmitButton from '../components/SubmitButton'
 import { SUBJECT, UNIVERSITY, START_DATE, END_DATE } from '../types/formTypes'
+import { LARGE } from '../types/componentTypes';
+import { buddyBlue } from '../styles/constants';
 
 const GroupCreationScreen = ({textChanged, group, dateChanged, buttonPressed,
-  selected, navigation}) => {
+  selected, navigation, editingComplete}) => {
   return (
     <View style={GroupStyles.container}>
       <TextInputField
         textChanged={textChanged}
         textValue={group.subject}
+        editingComplete={editingComplete}
         field={SUBJECT} />
       <TextInputField
         textChanged={textChanged}
         textValue={group.university}
+        editingComplete={editingComplete}
         field={UNIVERSITY} />
       <DateInput
         currentDate={new Date(group.startDate)}
@@ -42,6 +46,8 @@ const GroupCreationScreen = ({textChanged, group, dateChanged, buttonPressed,
         label="Create"
         buttonPressed={buttonPressed}
         navigation={navigation}
+        size={LARGE}
+        color={buddyBlue}
         data={group} />
     </View>
   );

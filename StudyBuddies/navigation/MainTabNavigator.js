@@ -10,8 +10,9 @@ import GroupCreationContainer from '../containers/GroupCreationContainer';
 import SearchContainer from '../containers/SearchContainer';
 import ResultsContainer from '../containers/ResultsContainer';
 import TestContainer from '../containers/TestContainer';
-import RegistrationContainer from '../containers/RegistrationContainer'
-import SigninContainer from '../containers/SigninContainer'
+import RegistrationContainer from '../containers/RegistrationContainer';
+import SigninContainer from '../containers/SigninContainer';
+import GroupDetailsContainer from '../containers/GroupDetailsContainer';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -32,8 +33,8 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-home`
+          : 'md-home'
       }
     />
   ),
@@ -41,44 +42,12 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = '';
 
-const LinksStack = createStackNavigator(
-  {
-    Links: LinksScreen,
-  },
-  config
-);
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
-  ),
-};
-
-LinksStack.path = '';
-
-const SettingsStack = createStackNavigator(
-  {
-    Settings: SettingsScreen,
-  },
-  config
-);
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
-  ),
-};
-
-SettingsStack.path = '';
-
 const JoinGroupStack = createStackNavigator(
   {
     GroupSearch: SearchContainer,
     GroupResults: ResultsContainer,
     GroupCreation: GroupCreationContainer,
-
+    GroupDetails: GroupDetailsContainer,
   },
   config
 );
@@ -90,8 +59,8 @@ JoinGroupStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-people`
+          : 'md-people'
       }
     />
   ),
@@ -145,8 +114,6 @@ SigninStack.path = 'signin';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack,
   JoinGroupStack,
   RegistrationStack,
   SigninStack

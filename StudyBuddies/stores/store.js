@@ -3,6 +3,11 @@ import studyBuddyApp from '../reducers/studyBuddyReducers'
 import logger from 'redux-logger'
 import userService from '../services/userService'
 
+/**
+  Check out this article on persistence in redux, would be useful to add if time permits
+  https://blog.reactnativecoach.com/the-definitive-guide-to-redux-persist-84738167975
+**/
+
 const initialState = {
   users: [
     {
