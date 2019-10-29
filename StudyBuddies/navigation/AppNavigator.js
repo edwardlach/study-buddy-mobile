@@ -1,17 +1,26 @@
 import React from 'react';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator, createStackNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
+import SigninContainer from '../containers/SigninContainer';
+import RegistrationContainer from '../containers/RegistrationContainer';
 
 /*
   Useful link for using navigation with functional components
   https://blog.harshil.dev/blog/using-react-navigation-with-functional-components-in-react-native/
 */
 
+const AuthenticationNavigator = createStackNavigator({
+  SignIn: SigninContainer,
+  Register: RegistrationContainer,
+});
+
 export default createAppContainer(
   createSwitchNavigator({
-    // You could add another route here for authentication.
-    // Read more at https://reactnavigation.org/docs/en/auth-flow.html
+    Auth: AuthenticationNavigator,
     Main: MainTabNavigator,
-  })
+  },
+    {
+      initialRouteName: 'Main',
+    })
 );

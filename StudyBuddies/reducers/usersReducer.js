@@ -62,16 +62,12 @@ const users = (state = [], action) => {
   switch (action.type) {
     case ADD_USER:
       return addUser(state, action);
-      break;
     case SET_FIRST_NAME:
       return updateFirstName(state, action);
-      break;
     case GET_USER_COMPLETE:
       return getUserComplete(state, action);
-      break;
     case POST_USER_COMPLETE:
       return postUserComplete(state, action);
-      break;
     default:
       return state;
   }

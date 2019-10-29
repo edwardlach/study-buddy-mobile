@@ -31,7 +31,7 @@ export default class SignInScreen extends React.Component {
                     <View style={registrationStyles.buttonWrapper}>
                         <Button
                             title="Sign In"
-                            onPress={() => this.props.onSubmit()}
+                            onPress={() => this.props.onSubmit(this.props.form)}
                         />
                     </View>
 

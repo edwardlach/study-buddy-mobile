@@ -1,4 +1,4 @@
-import { FORM_CHANGE } from '../types/reduxTypes';
+import { FORM_CHANGE, FORM_SUBMIT } from '../types/reduxTypes';
 
 //updates state of the form passed in the parameters
 const updateFormField = (state, action, formName) => {
@@ -10,12 +10,23 @@ const updateFormField = (state, action, formName) => {
     }
 }
 
+//updates the visibily for the confirmation modal
+const updateModalVisibility = (state, visible) => {
+    return {
+        ...state, ['registration']: {
+            ...state.registration, modalVisible: visible
+        }
+    }
+}
+
 const formReducer = (state = {}, action) => {
     switch (action.type) {
         case FORM_CHANGE.REGISTER:
             return updateFormField(state, action, 'registration');
         case FORM_CHANGE.SIGNIN:
             return updateFormField(state, action, 'signin');
+        case FORM_SUBMIT.REGISTER_MODAL_VISIBILITY:
+            return updateModalVisibility(state, action.visible);
         default:
             return state;
     }

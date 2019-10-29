@@ -28,7 +28,9 @@ const initialState = {
     results: [],
   },
   forms: {
-    registration: {},
+    registration: {
+      modalVisible: false,
+    },
     signin: {}
   }
 };
