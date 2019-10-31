@@ -3,7 +3,6 @@ import {
     View, Button, TextInput, Text, Modal, TouchableHighlight
 } from 'react-native'
 import registrationStyles from '../styles/RegistrationStyles'
-import DialogInput from 'react-native-dialog-input';
 
 export default class RegistrationScreen extends React.Component {
     render() {
