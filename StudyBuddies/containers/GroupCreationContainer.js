@@ -47,7 +47,8 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(newGroupEndDateSelected(selectedCount));
           break;
       }
-    }
+    },
+    editingComplete: () => {},
   }
 }
 

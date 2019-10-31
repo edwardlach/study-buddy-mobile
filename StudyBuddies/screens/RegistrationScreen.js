@@ -3,6 +3,7 @@ import {
     View, Button, TextInput, Text, Modal
 } from 'react-native'
 import registrationStyles from '../styles/RegistrationStyles'
+
 export default class RegistrationScreen extends React.Component {
     render() {
         return (

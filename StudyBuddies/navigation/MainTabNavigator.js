@@ -6,18 +6,45 @@ import GroupCreationContainer from '../containers/GroupCreationContainer';
 import SearchContainer from '../containers/SearchContainer';
 import ResultsContainer from '../containers/ResultsContainer';
 import ProfileScreen from '../screens/ProfleScreen'
+import TestContainer from '../containers/TestContainer';
+import RegistrationContainer from '../containers/RegistrationContainer';
+import SigninContainer from '../containers/SigninContainer';
+import GroupDetailsContainer from '../containers/GroupDetailsContainer';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
 
+const HomeStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+  },
+  config
+);
+
+HomeStack.navigationOptions = {
+  tabBarLabel: 'Home',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-home`
+          : 'md-home'
+      }
+    />
+  ),
+};
+
+HomeStack.path = '';
+
 const JoinGroupStack = createStackNavigator(
   {
     GroupSearch: SearchContainer,
     GroupResults: ResultsContainer,
     GroupCreation: GroupCreationContainer,
-
+    GroupDetails: GroupDetailsContainer,
   },
   config
 );
@@ -29,8 +56,8 @@ JoinGroupStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-people`
+          : 'md-people'
       }
     />
   ),
@@ -39,6 +66,7 @@ JoinGroupStack.navigationOptions = {
 JoinGroupStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
+  HomeStack,
   JoinGroupStack,
   ProfileScreen
 });
