@@ -10,6 +10,7 @@ import TestContainer from '../containers/TestContainer';
 import RegistrationContainer from '../containers/RegistrationContainer';
 import SigninContainer from '../containers/SigninContainer';
 import GroupDetailsContainer from '../containers/GroupDetailsContainer';
+import HomeScreen from '../screens/HomeScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
