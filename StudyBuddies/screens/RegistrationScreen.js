@@ -1,10 +1,8 @@
 import React from 'react'
 import {
-    View, Button, TextInput, Text, Modal, TouchableHighlight
+    View, Button, TextInput, Text, Modal
 } from 'react-native'
 import registrationStyles from '../styles/RegistrationStyles'
-import DialogInput from 'react-native-dialog-input';
-
 export default class RegistrationScreen extends React.Component {
     render() {
         return (
@@ -51,7 +49,7 @@ export default class RegistrationScreen extends React.Component {
                             <Button
                                 color="#e65058"
                                 title="Already Have An Account?"
-                                onPress={() => this.props.navigation.navigate('Signin')}
+                                onPress={() => this.props.navigation.navigate('signin')}
                             />
                         </View>
                     </View>
@@ -82,7 +80,7 @@ export default class RegistrationScreen extends React.Component {
                             <Button
                                 title="Confirm"
                                 onPress={() => {
-                                    this.props.confirm(this.state.confirmationCode, this.props.form.email);
+                                    this.props.confirm(this.state.confirmationCode, this.props.form.email, this.props.navigation);
                                 }} />
                         </View>
 

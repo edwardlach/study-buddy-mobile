@@ -6,6 +6,9 @@ import Auth from '@aws-amplify/auth';
 /**
  * Registers User using AWS Amplify
  */
+
+let navigation = null;
+
 const register = (name, email, password) => {
     Auth.signUp({
         username: email,
@@ -28,13 +31,14 @@ const register = (name, email, password) => {
 }
 
 const confirmAuth = (email, code) => {
-    console.log('confirming');
 
     Auth.confirmSignUp(email, code)
-        .then((response) => { 
+        .then((response) => {
             alert('completed sign up');
-            setModalVisibility(false);
-         }
+            changeModalVisbility(false);
+            navigation.navigate('App');
+
+        }
         ).catch(
             alert('Error signing up')
         )
@@ -59,7 +63,8 @@ const mapDispatchToProps = (dispatch) => {
         submitRegisterForm: (form) => {
             register(form.name, form.email, form.password)
         },
-        confirm: (confirmationCode, email) => {
+        confirm: (confirmationCode, email, nav) => {
+            navigation = nav;
             confirmAuth(email, confirmationCode);
         },
         setModalVisible: (visible) => {
