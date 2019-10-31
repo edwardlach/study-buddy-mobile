@@ -24,12 +24,13 @@ const ComponentStyles = StyleSheet.create({
     borderStyle: "solid",
     borderBottomWidth: 1,
     borderBottomColor: buddyBlue,
-    margin: 5,
-    padding: 8,
+    marginLeft: 5,
+    marginRight: 5,
+    paddingLeft: 8,
+    paddingRight: 8,
   },
   textInputField: {
     height: 55,
-    marginBottom: 10,
     fontSize: 18,
     fontWeight: '500',
     flex: 9,
@@ -44,7 +45,7 @@ const ComponentStyles = StyleSheet.create({
   // Date Picker Styles
   dateContainer: {
     flexDirection: 'column',
-    paddingTop: 20,
+    paddingTop: 18,
   },
   datePickerContainer: {
     flexDirection: 'row',
@@ -66,7 +67,7 @@ const ComponentStyles = StyleSheet.create({
     fontWeight: '500',
     marginLeft: 8,
     color: buddyGray,
-    paddingBottom: 13,
+    paddingBottom: 18,
   },
 
   // Submit Button

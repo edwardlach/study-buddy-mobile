@@ -45,7 +45,10 @@ const DetailsCard = ({color, type, text, height}) => {
       }]}>
       {displayIcon(type)}
       <Text style={[ComponentStyles.detailsText,
-        {color: type==SUBJECT ? 'black' : 'white'}]}>{text}</Text>
+        { color: type==SUBJECT ? 'black' : 'white',
+          fontSize: type==SUBJECT ? 48 : 36,
+          fontWeight: type==SUBJECT ? '500' : 'normal',
+        }]}>{text}</Text>
     </View>
   );
 }

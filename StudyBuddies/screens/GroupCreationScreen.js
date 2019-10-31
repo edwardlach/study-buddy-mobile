@@ -11,7 +11,7 @@ import TextInputField from '../components/TextInputField'
 import DateInput from '../components/DateInput'
 import SubmitButton from '../components/SubmitButton'
 import { SUBJECT, UNIVERSITY, START_DATE, END_DATE } from '../types/formTypes'
-import { LARGE } from '../types/componentTypes';
+import { LARGE, STANDARD } from '../types/componentTypes';
 import { buddyBlue } from '../styles/constants';
 
 const GroupCreationScreen = ({textChanged, group, dateChanged, buttonPressed,
@@ -22,11 +22,13 @@ const GroupCreationScreen = ({textChanged, group, dateChanged, buttonPressed,
         textChanged={textChanged}
         textValue={group.subject}
         editingComplete={editingComplete}
+        type={STANDARD}
         field={SUBJECT} />
       <TextInputField
         textChanged={textChanged}
         textValue={group.university}
         editingComplete={editingComplete}
+        type={STANDARD}
         field={UNIVERSITY} />
       <DateInput
         currentDate={new Date(group.startDate)}
