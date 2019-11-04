@@ -1,18 +1,19 @@
 import { postApiGenerator } from './postApiGenerator';
 import { getApiGenerator } from './getApiGenerator';
-
-// import Auth from '@aws-amplify/auth';
-//
-// async function getToken() {
-//   const session = await Auth.currentSession();
-//   console.log(session);
-//   return session.idToken.jwtToken;
-// }
-//
+import { FORM_SUBMIT } from '../types/reduxTypes'
 
 export default userService = store => next => action => {
   next(action);
-  switch(action.type) {
+  switch (action.type) {
+    case FORM_SUBMIT.REGISTER_POST:
+      console.log('form from reg to post', action.form);
+      const registerPostApi = getApiGenerator(next);
+      let headers = {
+        Accept: 'application/json'
+      }
+      registerPostApi('/users', action.form, headers);
+      break;
+
     case 'POST_USER':
       const postApi = postApiGenerator(next);
       body = action.body
@@ -22,6 +23,7 @@ export default userService = store => next => action => {
       }
       postApi('/test', action.type, postHeaders, action.body)
       break;
+
     case 'GET_USER':
       const getApi = getApiGenerator(next);
       let getHeaders = {
@@ -30,4 +32,5 @@ export default userService = store => next => action => {
       getApi('/test', action.type, getHeaders);
       break;
   }
+
 }

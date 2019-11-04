@@ -1,13 +1,13 @@
 import { API, GET_USER_COMPLETE } from '../types/reduxTypes';
 
-export const getApiGenerator = next => (route, name, headers) => {
+export const getApiGenerator = next => (route, name, headers, api = API) => {
   get = async () => {
-    endpoint = API + route;
+    endpoint = api + route;
     console.log(endpoint);
     fetch(endpoint, {
-        method: 'GET',
-        headers: headers
-      }
+      method: 'GET',
+      headers: headers
+    }
     ).then((response) => {
       response.json().then(data => {
         next({

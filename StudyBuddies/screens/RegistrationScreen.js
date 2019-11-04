@@ -17,15 +17,24 @@ export default class RegistrationScreen extends React.Component {
                     </View>
 
                     <View style={registrationStyles.form}>
-                        <TextInput style={registrationStyles.input}
-                            placeholder='Full Name'
+                        <TextInput
+                            style={registrationStyles.input}
+                            placeholder='First Name'
                             autoCapitalize="words"
                             textContentType="name"
-                            onChangeText={val => this.props.onChangeText('name', val)} />
+                            onChangeText={val => this.props.onChangeText('firstName', val)} />
+
+                        <TextInput
+                            style={registrationStyles.input}
+                            placeholder='Last Name'
+                            autoCapitalize="words"
+                            textContentType="name"
+                            onChangeText={val => this.props.onChangeText('lastName', val)} />
 
                         <TextInput style={registrationStyles.input}
                             placeholder='Email'
                             textContentType="emailAddress"
+                            autoCapitalize="none"
                             onChangeText={val => this.props.onChangeText('email', val)} />
 
                         <TextInput style={registrationStyles.input}
@@ -41,7 +50,6 @@ export default class RegistrationScreen extends React.Component {
                                 title="Sign Up"
                                 onPress={() => {
                                     this.props.submitRegisterForm(this.props.form);
-                                    this.props.setModalVisible(true);
                                 }}
                             />
                         </View>
@@ -68,7 +76,7 @@ export default class RegistrationScreen extends React.Component {
                         backgroundColor: 'rgba(0, 0, 0, 0.5)',
                         flex: 1,
                         alignItems: "center",
-                        justifyContent : "center",
+                        justifyContent: "center",
                         flexDirection: "column",
                     }}>
 
@@ -78,11 +86,19 @@ export default class RegistrationScreen extends React.Component {
                                 style={{ padding: 4, borderBottomWidth: 0.2, borderBottomColor: "black", marginBottom: 20 }}
                                 placeholder="Code"
                                 onChangeText={(text) => this.setState({ confirmationCode: text })} />
-                            <Button
-                                title="Confirm"
-                                onPress={() => {
-                                    this.props.confirm(this.state.confirmationCode, this.props.form.email, this.props.navigation);
-                                }} />
+                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-evenly", maxHeight : 40}}>
+                                <Button
+                                    title="Dismiss"
+                                    color=""
+                                    onPress={() => {
+                                        this.props.setModalVisible(false);
+                                    }} />
+                                <Button
+                                    title="Confirm"
+                                    onPress={() => {
+                                        this.props.confirm(this.state.confirmationCode, this.props.form, this.props.navigation);
+                                    }} />
+                            </View>
                         </View>
 
                     </View>

@@ -20,7 +20,6 @@ const group = (state = [], action) => {
   switch(action.type) {
     case 'POST_GROUP_COMPLETE':
       return groupPosted(state, action);
-      break;
     default:
       return state;
   }

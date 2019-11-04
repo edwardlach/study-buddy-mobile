@@ -21,6 +21,14 @@ const registrationStyles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: "#c2c2c2"
     },
+    Secondaryinput: {
+        width : "40%",
+        fontSize: 18,
+        height: 70,
+        borderStyle: "solid",
+        borderBottomWidth: 1,
+        borderBottomColor: "#c2c2c2"
+    },
     container: {
         flex: 1,
         alignItems: 'center',

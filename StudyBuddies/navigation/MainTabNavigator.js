@@ -6,9 +6,6 @@ import GroupCreationContainer from '../containers/GroupCreationContainer';
 import SearchContainer from '../containers/SearchContainer';
 import ResultsContainer from '../containers/ResultsContainer';
 import ProfileScreen from '../screens/ProfleScreen'
-import TestContainer from '../containers/TestContainer';
-import RegistrationContainer from '../containers/RegistrationContainer';
-import SigninContainer from '../containers/SigninContainer';
 import GroupDetailsContainer from '../containers/GroupDetailsContainer';
 import HomeScreen from '../screens/HomeScreen';
 

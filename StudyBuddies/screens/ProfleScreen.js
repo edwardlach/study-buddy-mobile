@@ -13,7 +13,7 @@ export default class ProfleScreen extends Component {
 
     logout(){
         Auth.signOut({ global: true }).then(
-            this.props.rootNavigation.navigation.navigate('App')
+            this.props.navigation.navigate('Auth')
         )
         .catch((err)=> console.log('error logging out', err))
     }
@@ -34,7 +34,7 @@ export default class ProfleScreen extends Component {
                 <Button
                     title='logout'
                     onPress={() => {
-                        
+                        this.logout();
                     }} />
             </View>
         )
