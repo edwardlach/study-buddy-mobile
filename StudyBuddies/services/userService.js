@@ -7,7 +7,7 @@ export default userService = store => next => action => {
   switch (action.type) {
     case FORM_SUBMIT.REGISTER_POST:
       console.log('form from reg to post', action.form);
-      const registerPostApi = getApiGenerator(next);
+      const registerPostApi = postApiGenerator(next);
       let headers = {
         Accept: 'application/json'
       }
