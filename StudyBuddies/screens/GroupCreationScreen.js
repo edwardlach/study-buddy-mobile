@@ -6,30 +6,34 @@ import {
   View,
 } from 'react-native';
 
-import GroupStyles from '../styles/groupStyles'
-import TextInputField from '../components/TextInputField'
-import DateInput from '../components/DateInput'
-import SubmitButton from '../components/SubmitButton'
-import { SUBJECT, UNIVERSITY, START_DATE, END_DATE } from '../types/formTypes'
+import GroupStyles from '../styles/groupStyles';
+import TextInputField from '../components/TextInputField';
+import DateInput from '../components/DateInput';
+import SubmitButton from '../components/SubmitButton';
+import SearchableDropdown from '../components/SearchableDropdown';
+import { SUBJECT, GROUP_NAME, START_DATE, END_DATE } from '../types/formTypes';
 import { LARGE, STANDARD } from '../types/componentTypes';
 import { buddyBlue } from '../styles/constants';
 
 const GroupCreationScreen = ({textChanged, group, dateChanged, buttonPressed,
-  selected, navigation, editingComplete}) => {
+  selected, navigation, editingComplete, classes, itemPressed}) => {
   return (
     <View style={GroupStyles.container}>
       <TextInputField
         textChanged={textChanged}
-        textValue={group.subject}
+        textValue={group.groupName}
+        editingComplete={editingComplete}
+        type={STANDARD}
+        field={GROUP_NAME} />
+      <SearchableDropdown
+        items={classes}
+        itemPressed={itemPressed}
+        selected={group.subjectSelected}
+        textChanged={textChanged}
+        value={group.subject}
         editingComplete={editingComplete}
         type={STANDARD}
         field={SUBJECT} />
-      <TextInputField
-        textChanged={textChanged}
-        textValue={group.university}
-        editingComplete={editingComplete}
-        type={STANDARD}
-        field={UNIVERSITY} />
       <DateInput
         currentDate={new Date(group.startDate)}
         setDate={dateChanged}

@@ -12,8 +12,7 @@ export const postApiGenerator = next => (route, name, headers, body) => {
       response.json().then(data => {
         next({
           type: `${name}_COMPLETE`,
-          info: data.info,
-          reduxId: data.reduxId
+          body: data
         });
       })
     });

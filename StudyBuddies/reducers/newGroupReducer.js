@@ -1,6 +1,7 @@
 import { UPDATE_SUBJECT_ON_NEW_GROUP, UPDATE_UNIVERSITY_ON_NEW_GROUP,
   UPDATE_START_DATE_ON_NEW_GROUP, UPDATE_END_DATE_ON_NEW_GROUP,
-  NEW_GROUP_START_DATE_SELECTED, NEW_GROUP_END_DATE_SELECTED
+  NEW_GROUP_START_DATE_SELECTED, NEW_GROUP_END_DATE_SELECTED,
+  UPDATE_NAME_ON_NEW_GROUP, UPDATE_SUBJECT_ID_ON_NEW_GROUP
 } from '../types/reduxTypes';
 
 /**************** Helper Functions ****************/
@@ -11,7 +12,18 @@ const updateSubject = (state, action) => {
     ...state,
     subject: action.subject,
     startDateSelected: false,
-    endDateSelected: false
+    endDateSelected: false,
+    subjectSelected: false,
+  }
+}
+
+const updateSubjectId = (state, action) => {
+  return {
+    ...state,
+    subjectId: action.id,
+    startDateSelected: false,
+    endDateSelected: false,
+    subjectSelected: true,
   }
 }
 
@@ -19,6 +31,15 @@ const updateUniversity = (state, action) => {
   return {
     ...state,
     university: action.university,
+    startDateSelected: false,
+    endDateSelected: false
+  }
+}
+
+const updateNameOnNewGroup = (state, action) => {
+  return {
+    ...state,
+    groupName: action.name,
     startDateSelected: false,
     endDateSelected: false
   }
@@ -75,6 +96,9 @@ const newGroup = (state = [], action) => {
     case UPDATE_UNIVERSITY_ON_NEW_GROUP:
       return updateUniversity(state, action);
       break;
+    case UPDATE_NAME_ON_NEW_GROUP:
+      return updateNameOnNewGroup(state, action);
+      break;
     case UPDATE_START_DATE_ON_NEW_GROUP:
       return updateStartDate(state, action);
       break;
@@ -86,6 +110,9 @@ const newGroup = (state = [], action) => {
       break;
     case NEW_GROUP_END_DATE_SELECTED:
       return endDateSelected(state, action);
+      break;
+    case UPDATE_SUBJECT_ID_ON_NEW_GROUP:
+      return updateSubjectId(state, action);
       break;
     default:
       return state;

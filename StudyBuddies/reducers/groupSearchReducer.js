@@ -24,11 +24,18 @@ const restrictToUniversity = (state, action) => {
 }
 
 const getGroupResultsComplete = (state, action) => {
-  return {
-    ...state,
-    results: [
-      ...action.results
-    ]
+  try {
+    return {
+      ...state,
+      results: [
+        ...action.body
+      ]
+    }
+  } catch {
+    alert(action.body.message)
+    return {
+      ...state
+    }
   }
 }
 

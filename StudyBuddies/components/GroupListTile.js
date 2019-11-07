@@ -15,10 +15,10 @@ const GroupListTile = ({group, buttonPressed, navigation}) => {
   return (
     <View style={ComponentStyles.groupListTile}>
       <View style={ComponentStyles.labelTextContainer}>
-        <Text style={ComponentStyles.labelText}>{group.class.name}</Text>
+        <Text style={ComponentStyles.labelText}>{group.groupName}</Text>
       </View>
       <View style={ComponentStyles.labelDescriptionContainer}>
-        <Text style={ComponentStyles.labelDescription}>{group.members.length+" members"}</Text>
+        <Text style={ComponentStyles.labelDescription}>{/*group.members.length*/"N members"}</Text>
       </View>
       <SubmitButton
         label="Show more"

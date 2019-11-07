@@ -5,10 +5,7 @@ const groupPosted = (state, action) => {
   return [
       ...state,
       {
-        info: {
-          ...action.into
-        },
-        id: action.reduxId
+        ...action.body
       }
   ];
 }

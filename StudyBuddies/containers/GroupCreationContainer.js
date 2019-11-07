@@ -1,15 +1,18 @@
 import { connect } from 'react-redux'
-import { updateSubjectOnNewGroup, updateUniversityOnNewGroup,
+import { updateSubjectOnNewGroup, updateNameOnNewGroup,
   updateStartDateOnNewGroup, updateEndDateOnNewGroup, newGroupStartDateSelected,
-  newGroupEndDateSelected, postGroup
- } from '../actions/groupActions'
-import GroupCreationScreen from '../screens/GroupCreationScreen'
-import Group from '../models/Group'
-import { SUBJECT, UNIVERSITY, START_DATE, END_DATE } from '../types/formTypes'
+  newGroupEndDateSelected, postGroup, updateSubjectIdOnNewGroup
+} from '../actions/groupActions';
+import GroupCreationScreen from '../screens/GroupCreationScreen';
+import Group from '../factories/GroupFactory';
+import { SUBJECT, UNIVERSITY, START_DATE,
+   END_DATE, GROUP_NAME
+} from '../types/formTypes';
 
 const mapStateToProps = state => {
   return {
     group: state.newGroup,
+    classes: state.classes,
   }
 }
 
@@ -20,10 +23,14 @@ const mapDispatchToProps = (dispatch) => {
         case SUBJECT:
           dispatch(updateSubjectOnNewGroup(text));
           break;
-        case UNIVERSITY:
-          dispatch(updateUniversityOnNewGroup(text));
+        case GROUP_NAME:
+          dispatch(updateNameOnNewGroup(text));
           break;
       }
+    },
+    itemPressed: (subject) => {
+      dispatch(updateSubjectOnNewGroup(subject.name));
+      dispatch(updateSubjectIdOnNewGroup(subject.classId));
     },
     dateChanged: (newDate, field) => {
       switch(field) {
@@ -35,8 +42,16 @@ const mapDispatchToProps = (dispatch) => {
           break;
       }
     },
-    buttonPressed: (data) => {
-      dispatch(postGroup(data));
+    buttonPressed: (data, navigation) => {
+      group = Group({
+        groupName: data.groupName,
+        classId: data.subjectId,
+        startDate: data.startDate,
+        endDate: data.endDate
+      });
+      dispatch(postGroup(group));
+      navigation.navigate("GroupSearch");
+      navigation.navigate("Home");
     },
     selected: (field, selectedCount) => {
       switch(field) {

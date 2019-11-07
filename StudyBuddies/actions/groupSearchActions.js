@@ -1,5 +1,5 @@
 import { ADD_RESULT, UPDATE_SEARCH_TERM, RESTRICT_TO_UNIVERSITY,
-  GET_GROUP_RESULTS_COMPLETE
+  GET_GROUP_RESULTS_COMPLETE, GET_GROUP_RESULTS
  } from '../types/reduxTypes';
 
 let nextResultId = 0
@@ -28,5 +28,12 @@ export const testGetResults = (results) => {
   return {
     type: GET_GROUP_RESULTS_COMPLETE,
     results: results,
+  }
+}
+
+export const getGroupResults = (searchTerm) => {
+  return {
+    type: GET_GROUP_RESULTS,
+    searchTerm: searchTerm,
   }
 }

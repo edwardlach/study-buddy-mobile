@@ -1,5 +1,8 @@
 import { postApiGenerator } from './postApiGenerator';
 import { getApiGenerator } from './getApiGenerator';
+import {
+  POST_GROUP, GET_GROUP, GET_GROUP_RESULTS, GET_CLASSES
+} from '../types/reduxTypes';
 
 // import Auth from '@aws-amplify/auth';
 //
@@ -13,21 +16,35 @@ import { getApiGenerator } from './getApiGenerator';
 export default groupService = store => next => action => {
   next(action);
   switch(action.type) {
-    case 'POST_GROUP':
+    case POST_GROUP:
       const postApi = postApiGenerator(next);
       body = action.body
-      body['reduxId'] = action.id;
       let postHeaders = {
         Accept: 'application/json',
       }
       postApi('/groups', action.type, postHeaders, action.body)
       break;
-    case 'GET_GROUP':
+    case GET_GROUP:
       const getApi = getApiGenerator(next);
       let getHeaders = {
         Accept: 'application/json',
       }
       getApi('/groups', action.type, getHeaders);
+      break;
+    case GET_GROUP_RESULTS:
+      const searchApi = getApiGenerator(next);
+      let searchHeaders = {
+        Accept: 'application/json',
+      }
+      searchApi('/groups?searchTerm=' + action.searchTerm,
+        action.type, searchHeaders);
+      break;
+    case GET_CLASSES:
+      const classApi = getApiGenerator(next);
+      let classHeaders = {
+        Accept: 'application/json',
+      }
+      classApi('/subjects', action.type, classHeaders);
       break;
   }
 }

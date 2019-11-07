@@ -2,6 +2,7 @@ import { applyMiddleware, createStore } from 'redux'
 import studyBuddyApp from '../reducers/studyBuddyReducers'
 import logger from 'redux-logger'
 import userService from '../services/userService'
+import groupService from '../services/groupService'
 
 /**
   Check out this article on persistence in redux, would be useful to add if time permits
@@ -32,6 +33,18 @@ const initialState = {
     isUniversityRestricted: false,
     results: [],
   },
+  classes: [
+    {
+      classId: 23,
+      classNumber: 220,
+      created: "2019-11-04T00:00:00",
+      deleted: false,
+      name: "Matrices",
+      subject: "MATH",
+      universityId: 1,
+      updated: "2019-11-04T00:00:00",
+    }
+  ],
   forms: {
     registration: {
       modalVisible: false,
@@ -42,6 +55,7 @@ const initialState = {
 
 const middlewares = [
   userService,
+  groupService,
   logger,
 ]
 

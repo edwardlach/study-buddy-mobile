@@ -12,8 +12,7 @@ export const getApiGenerator = next => (route, name, headers) => {
       response.json().then(data => {
         next({
           type: `${name}_COMPLETE`,
-          info: data.info,
-          reduxId: data.reduxId
+          body: data
         });
       });
     });

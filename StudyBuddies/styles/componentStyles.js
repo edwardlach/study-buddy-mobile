@@ -150,6 +150,22 @@ const ComponentStyles = StyleSheet.create({
     color: 'white',
   },
 
+  // Searchable Dropdown
+  itemList: {
+    maxHeight: 275,
+  },
+  itemButton: {
+    height: 55,
+    marginLeft: 5,
+    marginRight: 5,
+    paddingLeft: 8,
+    paddingRight: 8,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: buddyGray,
+  },
+
 });
 
 export default ComponentStyles;
