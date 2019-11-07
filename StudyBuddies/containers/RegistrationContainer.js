@@ -1,4 +1,5 @@
 import { regValueChange, setModalVisibility } from '../actions/formActions'
+import { registerUser } from '../actions/userActions'
 import RegistrationScreen from '../screens/RegistrationScreen'
 import { connect } from 'react-redux'
 import Auth from '@aws-amplify/auth';
@@ -6,7 +7,10 @@ import Auth from '@aws-amplify/auth';
 /**
  * Registers User using AWS Amplify
  */
-const register = (name, email, password) => {
+
+let navigation = null;
+
+const register = (name, email, password, dispatch) => {
     Auth.signUp({
         username: email,
         password,
@@ -16,28 +20,34 @@ const register = (name, email, password) => {
     })
         .then(
             (response) => {
-                setModalVisibility(true);
+                changeModalVisbility(dispatch, true);
                 console.log('sign up response', response);
             } //success
         )
         .catch((error) => {
-            setModalVisibility(false);
-            alert('Unable to register: an error occured');
+            alert('Unable to register: ' + error.message);
             console.log(error);
         }); //failure
 }
 
-const confirmAuth = (email, code) => {
-    console.log('confirming');
+const confirmAuth = (form, code, dispatch) => {
 
-    Auth.confirmSignUp(email, code)
-        .then((response) => { 
-            alert('completed sign up');
-            setModalVisibility(false);
-         }
+    Auth.confirmSignUp(form.email, code)
+        .then((response) => {
+            regiseterThroughEndpoint(form, dispatch);
+            changeModalVisbility(dispatch, false);
+            alert('Congrats! You are now registered');
+            navigation.navigate('App');
+        }
         ).catch(
-            alert('Error signing up')
+            (err) => {
+                alert('Invalid : ' + err.message);
+            }
         )
+}
+
+const regiseterThroughEndpoint = (form, dispatch) => {
+    return dispatch(registerUser(form));
 }
 
 const changeModalVisbility = (dispatch, visible) => {
@@ -57,10 +67,11 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(regValueChange(prop, val));
         },
         submitRegisterForm: (form) => {
-            register(form.name, form.email, form.password)
+            register((form.firstName + form.lastName), form.email, form.password, dispatch)
         },
-        confirm: (confirmationCode, email) => {
-            confirmAuth(email, confirmationCode);
+        confirm: (confirmationCode, email, nav) => {
+            navigation = nav;
+            confirmAuth(email, confirmationCode, dispatch);
         },
         setModalVisible: (visible) => {
             changeModalVisbility(dispatch, visible);

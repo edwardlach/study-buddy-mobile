@@ -31,7 +31,7 @@ export default class SignInScreen extends React.Component {
                     <View style={registrationStyles.buttonWrapper}>
                         <Button
                             title="Sign In"
-                            onPress={() => this.props.onSubmit(this.props.form)}
+                            onPress={() => this.props.onSubmit(this.props.form, this.props.navigation)}
                         />
                     </View>
 
@@ -39,7 +39,7 @@ export default class SignInScreen extends React.Component {
                         <Button
                             color="#e65058"
                             title="Don't have an account yet?"
-                            onPress={() => this.props.navigation.navigate('Registration')}
+                            onPress={() => this.props.navigation.navigate('register')}
                         />
                     </View>
                 </View>

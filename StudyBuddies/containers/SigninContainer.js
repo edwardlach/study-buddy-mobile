@@ -3,20 +3,20 @@ import SigninScreen from '../screens/SigninScreen'
 import { connect } from 'react-redux'
 import Auth from '@aws-amplify/auth';
 
-
+let navigation = null;
 //Amplify sign in
 const signIn = (email, password) => {
     Auth.signIn(email, password)
         .then(
             (response) => {
-                alert('Sign in successful')
+                alert('Congrats! You are now signed in');
                 console.log('sign in response', response);
+                navigation.navigate('App');
             } //success
         )
         .catch(
             (err) => {
-                alert('unable to sign in')
-                console.log('login error', err);
+                alert('Error : ' + err.message);
             }
         )
 }
@@ -32,7 +32,8 @@ const mapDispatchToProps = (dispatch) => {
         onChangeText: (prop, val) => {
             dispatch(signinValueChange(prop, val));
         },
-        onSubmit: (form) => {
+        onSubmit: (form, nav) => {
+            navigation = nav;
             signIn(form.email, form.password);
         }
     }

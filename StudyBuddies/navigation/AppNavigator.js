@@ -4,23 +4,20 @@ import { createAppContainer, createSwitchNavigator, createStackNavigator } from 
 import MainTabNavigator from './MainTabNavigator';
 import SigninContainer from '../containers/SigninContainer';
 import RegistrationContainer from '../containers/RegistrationContainer';
+import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 
-/*
-  Useful link for using navigation with functional components
-  https://blog.harshil.dev/blog/using-react-navigation-with-functional-components-in-react-native/
-*/
-
-const AuthenticationNavigator = createStackNavigator({
-  SignIn: SigninContainer,
-  Register: RegistrationContainer,
+const AuthenticationNavigator = createSwitchNavigator({
+  register: RegistrationContainer,
+  signin: SigninContainer,
 });
 
 export default createAppContainer(
   createSwitchNavigator({
+    AuthLoading: AuthLoadingScreen,
     Auth: AuthenticationNavigator,
-    Main: MainTabNavigator,
+    App: MainTabNavigator,
   },
     {
-      initialRouteName: 'Main',
+      initialRouteName: 'AuthLoading',
     })
 );
