@@ -47,9 +47,10 @@ const initialState = {
   ],
   forms: {
     registration: {
-      modalVisible: false,
     },
-    signin: {}
+    signin: {
+      modalVisible: false,
+    }
   }
 };
 

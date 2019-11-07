@@ -13,8 +13,8 @@ const updateFormField = (state, action, formName) => {
 //updates the visibily for the confirmation modal
 const updateModalVisibility = (state, visible) => {
     return {
-        ...state, ['registration']: {
-            ...state.registration, modalVisible: visible
+        ...state, ['signin']: {
+            ...state.signin, modalVisible: visible
         }
     }
 }

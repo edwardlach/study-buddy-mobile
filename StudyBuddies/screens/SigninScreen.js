@@ -1,48 +1,99 @@
 import React from 'react'
 import {
-    View, Button, TextInput, Text
+    View, Button, TextInput, Text, Modal
 } from 'react-native'
 import registrationStyles from '../styles/RegistrationStyles'
 
 export default class SignInScreen extends React.Component {
+
+    constructor(props) {
+        super(props);
+        props.setModalVisible(this.props.navigation.getParam('modal', false));
+        props.form['email'] = this.props.navigation.getParam('email', '');
+    }
+
     render() {
         return (
-            <View style={registrationStyles.container}>
+            <View style={{ flex: 1 }}>
+                <View style={registrationStyles.container}>
 
-                <View style={registrationStyles.titleView}>
-                    <Text style={registrationStyles.title}>Sign in</Text>
-                </View>
-
-                <View style={registrationStyles.form}>
-
-                    <TextInput style={registrationStyles.input}
-                        placeholder='Email'
-                        textContentType="emailAddress"
-                        onChangeText={val => this.props.onChangeText('email', val)} />
-
-                    <TextInput style={registrationStyles.input}
-                        placeholder='Password'
-                        textContentType="password"
-                        secureTextEntry={true}
-                        onChangeText={val => this.props.onChangeText('password', val)} />
-                </View>
-
-                <View style={registrationStyles.actions}>
-                    <View style={registrationStyles.buttonWrapper}>
-                        <Button
-                            title="Sign In"
-                            onPress={() => this.props.onSubmit(this.props.form, this.props.navigation)}
-                        />
+                    <View style={registrationStyles.titleView}>
+                        <Text style={registrationStyles.title}>Sign in</Text>
                     </View>
 
-                    <View style={registrationStyles.buttonWrapper}>
-                        <Button
-                            color="#e65058"
-                            title="Don't have an account yet?"
-                            onPress={() => this.props.navigation.navigate('register')}
-                        />
+                    <View style={registrationStyles.form}>
+
+                        <TextInput style={registrationStyles.input}
+                            placeholder='Email'
+                            value={this.props.form.email}
+                            textContentType="emailAddress"
+                            onChangeText={val => this.props.onChangeText('email', val)} />
+
+                        <TextInput style={registrationStyles.input}
+                            placeholder='Password'
+                            textContentType="password"
+                            secureTextEntry={true}
+                            onChangeText={val => this.props.onChangeText('password', val)} />
+                    </View>
+
+                    <View style={registrationStyles.actions}>
+                        <View style={registrationStyles.buttonWrapper}>
+                            <Button
+                                title="Sign In"
+                                onPress={() => this.props.onSubmit(this.props.form, this.props.navigation)}
+                            />
+                        </View>
+
+                        <View style={registrationStyles.buttonWrapper}>
+                            <Button
+                                color="#e65058"
+                                title="Don't have an account yet?"
+                                onPress={() => this.props.navigation.navigate('register')}
+                            />
+                        </View>
                     </View>
                 </View>
+
+                {/* Dialog for confirmation code */}
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.props.form.modalVisible}>
+
+                    <View style={{
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        flex: 1,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexDirection: "column",
+                    }}>
+
+                        <View style={{ backgroundColor: 'white', elevation: 30, padding: 20 }}>
+                            <Text style={{ fontSize: 18, padding: 5 }}>Please enter the code emailed to you</Text>
+                            <TextInput
+                                style={{ padding: 4, borderBottomWidth: 0.2, borderBottomColor: "black", marginBottom: 20 }}
+                                placeholder="Code"
+                                keyboardType="numeric"
+                                maxLength={6}
+                                onChangeText={(text) => this.setState({ confirmationCode: text })} />
+                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-evenly", maxHeight: 40 }}>
+                                <Button
+                                    title="Dismiss"
+                                    color="#e65058"
+                                    onPress={() => {
+                                        this.props.setModalVisible(false);
+                                    }} />
+                                <Button
+                                    title="Confirm"
+                                    onPress={() => {
+                                        this.props.confirm(this.state.confirmationCode, this.props.navigation.getParam('email', ''), this.props.navigation);
+                                    }} />
+                            </View>
+                        </View>
+
+                    </View>
+                </Modal>
+
             </View>
         )
     }

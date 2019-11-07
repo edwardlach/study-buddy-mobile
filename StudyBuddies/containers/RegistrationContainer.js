@@ -10,7 +10,7 @@ import Auth from '@aws-amplify/auth';
 
 let navigation = null;
 
-const register = (name, email, password, dispatch) => {
+const register = (name, email, password, dispatch, form) => {
     Auth.signUp({
         username: email,
         password,
@@ -20,8 +20,8 @@ const register = (name, email, password, dispatch) => {
     })
         .then(
             (response) => {
-                changeModalVisbility(dispatch, true);
-                console.log('sign up response', response);
+                regiseterThroughEndpoint(form, dispatch);
+                navigation.navigate('signin', { modal: true, email : form.email });
             } //success
         )
         .catch((error) => {
@@ -30,21 +30,20 @@ const register = (name, email, password, dispatch) => {
         }); //failure
 }
 
-const confirmAuth = (form, code, dispatch) => {
+// const confirmAuth = (form, code, dispatch) => {
 
-    Auth.confirmSignUp(form.email, code)
-        .then((response) => {
-            regiseterThroughEndpoint(form, dispatch);
-            changeModalVisbility(dispatch, false);
-            alert('Congrats! You are now registered');
-            navigation.navigate('App');
-        }
-        ).catch(
-            (err) => {
-                alert('Invalid : ' + err.message);
-            }
-        )
-}
+//     Auth.confirmSignUp(form.email, code)
+//         .then((response) => {
+//             changeModalVisbility(dispatch, false);
+//             alert('Congrats! You are now registered');
+//             navigation.navigate('App');
+//         }
+//         ).catch(
+//             (err) => {
+//                 alert('Invalid : ' + err.message);
+//             }
+//         )
+// }
 
 const regiseterThroughEndpoint = (form, dispatch) => {
     return dispatch(registerUser(form));
@@ -66,8 +65,9 @@ const mapDispatchToProps = (dispatch) => {
         onChangeText: (prop, val) => {
             dispatch(regValueChange(prop, val));
         },
-        submitRegisterForm: (form) => {
-            register((form.firstName + form.lastName), form.email, form.password, dispatch)
+        submitRegisterForm: (form, nav) => {
+            navigation = nav;
+            register((form.firstName + form.lastName), form.email, form.password, dispatch, form);
         },
         confirm: (confirmationCode, email, nav) => {
             navigation = nav;

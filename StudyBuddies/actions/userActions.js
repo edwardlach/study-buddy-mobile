@@ -40,7 +40,7 @@ export const registerUser = (formOriginal) => {
     type: FORM_SUBMIT.REGISTER_POST,
     form: {
       "lastName": formOriginal.lastName,
-      "fistName": formOriginal.firstName,
+      "firstName": formOriginal.firstName,
       "email": formOriginal.email,
       "educationLevel": 13,
       "universityId": 1

@@ -11,7 +11,7 @@ export default userService = store => next => action => {
       let headers = {
         Accept: 'application/json'
       }
-      registerPostApi('/users', action.form, headers);
+      registerPostApi('/users', action.type, headers, action.form);
       break;
 
     case 'POST_USER':

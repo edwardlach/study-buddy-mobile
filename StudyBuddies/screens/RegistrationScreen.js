@@ -49,7 +49,7 @@ export default class RegistrationScreen extends React.Component {
                             <Button
                                 title="Sign Up"
                                 onPress={() => {
-                                    this.props.submitRegisterForm(this.props.form);
+                                    this.props.submitRegisterForm(this.props.form, this.props.navigation);
                                 }}
                             />
                         </View>
@@ -67,7 +67,7 @@ export default class RegistrationScreen extends React.Component {
                 </View>
 
                 {/* Dialog for confirmation code */}
-                <Modal
+                {/* <Modal
                     animationType="slide"
                     transparent={true}
                     visible={this.props.form.modalVisible}>
@@ -102,7 +102,7 @@ export default class RegistrationScreen extends React.Component {
                         </View>
 
                     </View>
-                </Modal>
+                </Modal> */}
 
             </View>
         )
