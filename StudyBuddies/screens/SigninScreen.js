@@ -27,6 +27,7 @@ export default class SignInScreen extends React.Component {
                             placeholder='Email'
                             value={this.props.form.email}
                             textContentType="emailAddress"
+                            autoCapitalize = "none"
                             onChangeText={val => this.props.onChangeText('email', val)} />
 
                         <TextInput style={registrationStyles.input}
