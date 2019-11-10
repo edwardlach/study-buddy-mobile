@@ -20,7 +20,7 @@ import ComponentStyles from '../styles/componentStyles';
   field - The type of value the text field will update (ie SUBJECT, GROUP_NAME, etc)
   itemPressed - function for the action to be performed when a listed item is pressed
   selected - boolean indicating if a listed item is currently selected,
-             if true, will dismiss the result list until user begins typing again
+             if true will dismiss the result list until user begins typing again.
 */
 const SearchableDropdown = ({items, textChanged, value, editingComplete,
   type, field, itemPressed, selected}) => {
