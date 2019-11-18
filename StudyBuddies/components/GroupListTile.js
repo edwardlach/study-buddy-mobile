@@ -10,6 +10,15 @@ import SubmitButton from './SubmitButton';
 import { buddyRed } from '../styles/constants';
 import { SMALL } from '../types/componentTypes';
 
+function memberLabel(group) {
+  if (group.groupMemberships == null) {
+    return "0 members";
+  } else if (group.groupMemberships.length == 1) {
+    return "1 member";
+  } else {
+    return group.groupMemberships.length + " members";
+  }
+}
 
 const GroupListTile = ({group, buttonPressed, navigation}) => {
   return (
@@ -18,7 +27,7 @@ const GroupListTile = ({group, buttonPressed, navigation}) => {
         <Text style={ComponentStyles.labelText}>{group.groupName}</Text>
       </View>
       <View style={ComponentStyles.labelDescriptionContainer}>
-        <Text style={ComponentStyles.labelDescription}>{/*group.members.length*/"N members"}</Text>
+        <Text style={ComponentStyles.labelDescription}>{memberLabel(group)}</Text>
       </View>
       <SubmitButton
         label="Show more"

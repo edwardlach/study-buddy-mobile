@@ -13,30 +13,45 @@ import SubmitButton from '../components/SubmitButton';
 import { buddyBlue, darkBuddyBlue, buddyRed } from '../styles/constants';
 import { SUBJECT, UNIVERSITY, MEMBERS, LARGE } from '../types/componentTypes';
 
-const GroupDetailsScreen = ({group, buttonPressed, navigation}) => {
+function memberLabel(group) {
+  if (group.groupMemberships == null) {
+    return "0 members";
+  } else if (group.groupMemberships.length == 1) {
+    return "1 member";
+  } else {
+    return group.groupMemberships.length + " members";
+  }
+}
+
+function test(group) {
+  console.log(group);
+  return "Test";
+}
+
+const GroupDetailsScreen = ({details, buttonPressed, navigation}) => {
   return (
     <View style={GroupStyles.container}>
       <DetailsCard
         color={'transparent'}
         type={SUBJECT}
-        text={"Math 250"}
+        text={details.subject.name}
         height={Dimensions.get('screen').height/3} />
       <DetailsCard
         color={buddyBlue}
         type={UNIVERSITY}
-        text={"Penn State"}
+        text={details.subject.university.name}
         height={Dimensions.get('screen').height/3} />
       <DetailsCard
         color={darkBuddyBlue}
         type={MEMBERS}
-        text={"2 Members"}
+        text={memberLabel(details)}
         height={Dimensions.get('screen').height/3} />
       <SubmitButton
         label="Join"
         color={buddyRed}
         buttonPressed={buttonPressed}
         navigation={navigation}
-        data={group}
+        data={details}
         customStyle={GroupStyles.joinGroupButtonContainer}
         size={LARGE} />
     </View>

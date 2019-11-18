@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import SearchScreen from '../screens/SearchScreen'
 import {
   updateSearchTerm, restrictToUniversity,
-  testGetResults, getGroupResults
+  testGetResults, getGroupResults, setDetails
 } from '../actions/groupSearchActions'
 import { getClasses } from '../actions/classActions'
 import { studyGroups } from '../assets/testData/studyGroups'
@@ -23,7 +23,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(getClasses());
       navigation.navigate("GroupCreation");
     },
-    showMoreButtonPressed: (groupSearch, navigation) => {
+    showMoreButtonPressed: (group, navigation) => {
+      dispatch(setDetails(group));
       navigation.navigate("GroupDetails");
     },
     isSelected: (groupResults) => {
