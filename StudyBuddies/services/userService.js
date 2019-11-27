@@ -1,12 +1,12 @@
 import { postApiGenerator } from './postApiGenerator';
 import { getApiGenerator } from './getApiGenerator';
-import { FORM_SUBMIT } from '../types/reduxTypes'
+import { FORM_SUBMIT, GET_GROUP_BY_USER } from '../types/reduxTypes'
 
 export default userService = store => next => action => {
   next(action);
   switch (action.type) {
+
     case FORM_SUBMIT.REGISTER_POST:
-      console.log('form from reg to post', action.form);
       const registerPostApi = postApiGenerator(next);
       let headers = {
         Accept: 'application/json'
@@ -30,6 +30,21 @@ export default userService = store => next => action => {
         Accept: 'application/json',
       }
       getApi('/test', action.type, getHeaders);
+      break;
+
+    case GET_GROUP_BY_USER:
+      getApi = getApiGenerator(next);
+      getHeaders = {
+        Accept: 'application/json',
+      }
+      getApi(`/users/${action.userId}/groupmemberships`)
+
+    case FORM_SUBMIT.GET_USERID:
+      const getUserIdApi = getApiGenerator(next);
+      getHeaders = {
+        Accept: 'application/json',
+      }
+      getUserIdApi(`/users?email=${action.email}`, action.type, getHeaders);
       break;
   }
 

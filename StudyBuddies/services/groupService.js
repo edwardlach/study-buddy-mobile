@@ -15,7 +15,8 @@ import {
 
 export default groupService = store => next => action => {
   next(action);
-  switch(action.type) {
+  switch (action.type) {
+
     case POST_GROUP:
       const postApi = postApiGenerator(next);
       body = action.body
@@ -24,6 +25,7 @@ export default groupService = store => next => action => {
       }
       postApi('/groups', action.type, postHeaders, action.body)
       break;
+
     case GET_GROUP:
       const getApi = getApiGenerator(next);
       let getHeaders = {
@@ -31,6 +33,7 @@ export default groupService = store => next => action => {
       }
       getApi('/groups', action.type, getHeaders);
       break;
+
     case GET_GROUP_RESULTS:
       const searchApi = getApiGenerator(next);
       let searchHeaders = {
@@ -39,6 +42,7 @@ export default groupService = store => next => action => {
       searchApi('/groups?searchTerm=' + action.searchTerm,
         action.type, searchHeaders);
       break;
+
     case GET_CLASSES:
       const classApi = getApiGenerator(next);
       let classHeaders = {
@@ -46,5 +50,6 @@ export default groupService = store => next => action => {
       }
       classApi('/subjects', action.type, classHeaders);
       break;
+
   }
 }

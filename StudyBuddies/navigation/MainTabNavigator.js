@@ -35,7 +35,7 @@ HomeStack.navigationOptions = {
   ),
 };
 
-HomeStack.path = '';
+HomeStack.path = 'home';
 
 const JoinGroupStack = createStackNavigator(
   {
