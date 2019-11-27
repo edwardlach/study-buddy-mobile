@@ -1,5 +1,5 @@
 import { UPDATE_SEARCH_TERM, RESTRICT_TO_UNIVERSITY,
-  GET_GROUP_RESULTS_COMPLETE } from '../types/reduxTypes'
+  GET_GROUP_RESULTS_COMPLETE, SET_DETAILS } from '../types/reduxTypes'
 
 /**************** Helper Functions ****************/
 
@@ -39,6 +39,13 @@ const getGroupResultsComplete = (state, action) => {
   }
 }
 
+const setDetails = (state, action) => {
+  return {
+    ...state,
+    details: action.group
+  }
+}
+
 
 /**************** Reducer Function ****************/
 
@@ -52,6 +59,9 @@ const groupSearch = (state = [], action) => {
       break;
     case GET_GROUP_RESULTS_COMPLETE:
       return getGroupResultsComplete(state, action);
+      break;
+    case SET_DETAILS:
+      return setDetails(state, action);
       break;
     default:
       return state;

@@ -4,7 +4,7 @@ import GroupDetailsScreen from '../screens/GroupDetailsScreen';
 
 const mapStateToProps = state => {
   return {
-    groups: state.groupSearch.results
+    details: state.groupSearch.details
   }
 }
 
