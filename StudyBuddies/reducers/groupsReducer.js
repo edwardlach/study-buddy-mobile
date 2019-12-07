@@ -1,4 +1,5 @@
 import { GET_GROUP_BY_USER_COMPLETE } from "../types/reduxTypes";
+import { AsyncStorage } from 'react-native'
 
 /**************** Helper Functions ****************/
 
@@ -12,7 +13,20 @@ const groupPosted = (state, action) => {
 }
 
 const getUserGroupsSuccess = (state, action) => {
-  console.log('groups memberships', action.body);
+  if (action.body['message'] != undefined) {
+    alert(action.body['message']);
+    return;
+  }
+
+  var groupList = [];
+  action.body.forEach(element => {
+    groupList.push({ 'name': element.groupName, 'id': element.groupId, 'subject': element.subject.subject });
+  });
+
+  return {
+    ...state, groupList
+  };
+
 }
 
 

@@ -7,7 +7,8 @@ import SearchContainer from '../containers/SearchContainer';
 import ResultsContainer from '../containers/ResultsContainer';
 import ProfileScreen from '../screens/ProfleScreen'
 import GroupDetailsContainer from '../containers/GroupDetailsContainer';
-import HomeScreen from '../screens/HomeScreen';
+import ChatScreen from '../screens/ChatScreen';
+import HomeContainer from '../containers/HomeContainer';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -16,7 +17,8 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Home: HomeContainer,
+    Chat: ChatScreen
   },
   config
 );
@@ -34,6 +36,9 @@ HomeStack.navigationOptions = {
     />
   ),
 };
+
+HomeStack.path = '';
+
 
 HomeStack.path = 'home';
 

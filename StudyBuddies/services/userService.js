@@ -25,7 +25,7 @@ export default userService = store => next => action => {
       break;
 
     case 'GET_USER':
-      const getApi = getApiGenerator(next);
+      let getApi = getApiGenerator(next);
       let getHeaders = {
         Accept: 'application/json',
       }
@@ -37,7 +37,9 @@ export default userService = store => next => action => {
       getHeaders = {
         Accept: 'application/json',
       }
-      getApi(`/users/${action.userId}/groupmemberships`)
+      console.log('group membership sending', action);
+      getApi(`/users/${action.userId}/groupmemberships`, action.type, getHeaders);
+      break;
 
     case FORM_SUBMIT.GET_USERID:
       const getUserIdApi = getApiGenerator(next);

@@ -1,4 +1,5 @@
 import { applyMiddleware, createStore } from 'redux'
+import thunk from 'redux-thunk';
 import studyBuddyApp from '../reducers/studyBuddyReducers'
 import logger from 'redux-logger'
 import userService from '../services/userService'
@@ -63,5 +64,5 @@ const middlewares = [
 export const store = createStore(
   studyBuddyApp,
   initialState,
-  applyMiddleware(...middlewares)
+  applyMiddleware(...middlewares, thunk)
 );
