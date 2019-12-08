@@ -1,5 +1,6 @@
 // API URL
 export const API = "https://4b7jtysje3.execute-api.us-east-1.amazonaws.com/develop";
+export const WSS = "wss://j1g49nfi28.execute-api.us-east-1.amazonaws.com/dev";
 
 // User Types
 export const SET_FIRST_NAME = 'SET_FIRST_NAME';
@@ -33,6 +34,14 @@ export const RESTRICT_TO_UNIVERSITY = 'RESTRICT_TO_UNIVERSITY';
 export const GET_GROUP_RESULTS = 'GET_GROUP_RESULTS';
 export const GET_GROUP_RESULTS_COMPLETE = 'GET_GROUP_RESULTS_COMPLETE';
 export const SET_DETAILS = 'SET_DETAILS';
+
+
+// Web Socket Types
+export const CONNECT = 'CONNECT';
+export const DISCONNECT = 'DISCONNECT';
+export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const MSG_RECEIVED = 'MSG_RECEIVED';
+
 
 // Form Types
 export const FORM_CHANGE = {

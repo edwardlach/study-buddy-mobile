@@ -4,6 +4,7 @@ import studyBuddyApp from '../reducers/studyBuddyReducers'
 import logger from 'redux-logger'
 import userService from '../services/userService'
 import groupService from '../services/groupService'
+import webSocketService from '../services/webSocketService'
 
 /**
   Check out this article on persistence in redux, would be useful to add if time permits
@@ -58,6 +59,7 @@ const initialState = {
 const middlewares = [
   userService,
   groupService,
+  webSocketService,
   logger,
 ]
 
