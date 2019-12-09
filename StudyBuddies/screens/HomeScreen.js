@@ -21,25 +21,33 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
-    if (this.props.state.groups.groupList != undefined) {
-      return (
-        <ScrollView style={{paddingVertical : 10}}>
-          {
-            this.props.state.groups.groupList.map(
-              (group) => (
-                <View style={styles.container} key={group.id} >
-                  <TouchableOpacity style={styles.groupItem} onPress={()=> this.props.navigation.navigate('Chat')}>
-                    <Text style={styles.title}>
-                      {group.name}
-                    </Text>
-                    <Text style={styles.subscript}>
-                      {group.subject}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              ))}
-        </ScrollView>
-      );
+    if (this.props.groups.loaded) {
+      if (this.props.groups.groupList != undefined) {
+        return (
+          <ScrollView style={{paddingVertical : 10}}>
+            {
+              this.props.groups.groupList.map(
+                (group) => (
+                  <View style={styles.container} key={group.id} >
+                    <TouchableOpacity style={styles.groupItem} onPress={()=> this.props.navigation.navigate('Chat')}>
+                      <Text style={styles.title}>
+                        {group.name}
+                      </Text>
+                      <Text style={styles.subscript}>
+                        {group.subject}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                ))}
+            </ScrollView>
+          );
+      } else {
+        return (
+          <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+            <Text style={{ fontSize: 25 }}>No groups found, try joining some!</Text>
+          </View>
+        );
+      }
     }
 
     return (

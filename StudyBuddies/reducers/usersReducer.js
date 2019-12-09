@@ -9,10 +9,7 @@ const addUser = (state, action) => {
   return [
     ...state,
     {
-      info: {
-        ...action.user
-      },
-      id: action.id
+      ...action.body
     }
   ];
 }
@@ -57,7 +54,7 @@ const postUserComplete = (state, action) => {
 }
 
 const getUserId = async (state, action) => {
-  await AsyncStorage.setItem('@UserId', action.body.userId);
+  await AsyncStorage.setItem('@UserId', action.body.userId.toString());
 }
 
 
@@ -72,7 +69,8 @@ const users = (state = [], action) => {
     case GET_USER_COMPLETE:
       return getUserComplete(state, action);
     case FORM_SUBMIT.GET_USERID_COMPLETE:
-      return getUserId(state, action);
+      getUserId(state, action);
+      return addUser(state, action);
     case POST_USER_COMPLETE:
       return postUserComplete(state, action);
     default:

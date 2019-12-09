@@ -21,6 +21,7 @@ const onMessage = next => (event) => {
 }
 
 export default webSocketService = store => next => action => {
+  next(action);
   switch (action.type) {
     case CONNECT:
       if (socket == null) {

@@ -1,5 +1,9 @@
 import { connect } from 'react-redux';
 import GroupDetailsScreen from '../screens/GroupDetailsScreen';
+import { AsyncStorage } from 'react-native';
+import { joinGroup } from '../actions/groupActions';
+import { GroupMembership } from '../factories/GroupMembershipFactory';
+
 
 
 const mapStateToProps = state => {
@@ -8,10 +12,24 @@ const mapStateToProps = state => {
   }
 }
 
+const sendJoinRequest = async (dispatch, navigation, group) => {
+    AsyncStorage.getItem('@UserId')
+      .then((userId) => {
+        console.log("UserId returned as ", userId);
+        membership = {
+          userId: userId,
+          groupId: group.groupId.toString()
+        };
+        dispatch(joinGroup(membership));
+        navigation.goBack();
+        navigation.navigate("Home");
+      });
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     buttonPressed: (group, navigation) => {
-      navigation.navigate("Home");
+      sendJoinRequest(dispatch, navigation, group);
     },
   }
 }

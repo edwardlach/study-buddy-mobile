@@ -1,7 +1,11 @@
 import { postApiGenerator } from './postApiGenerator';
 import { getApiGenerator } from './getApiGenerator';
 import {
-  POST_GROUP, GET_GROUP, GET_GROUP_RESULTS, GET_CLASSES
+  POST_GROUP,
+  GET_GROUP,
+  GET_GROUP_RESULTS,
+  GET_CLASSES,
+  JOIN_GROUP
 } from '../types/reduxTypes';
 
 // import Auth from '@aws-amplify/auth';
@@ -32,6 +36,14 @@ export default groupService = store => next => action => {
         Accept: 'application/json',
       }
       getApi('/groups', action.type, getHeaders);
+      break;
+
+    case JOIN_GROUP:
+      const joinApi = postApiGenerator(next);
+      let joinHeaders = {
+        Accept: 'application/json'
+      }
+      joinApi('/groupmembership', action.type, joinHeaders, action.body);
       break;
 
     case GET_GROUP_RESULTS:

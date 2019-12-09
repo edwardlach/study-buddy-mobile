@@ -11,6 +11,10 @@ export const POST_USER_COMPLETE = 'POST_USER_COMPLETE';
 export const GET_GROUP_BY_USER = 'GET_GROUP_BY_USER';
 export const GET_GROUP_BY_USER_COMPLETE = 'GET_GROUP_BY_USER_COMPLETE';
 
+// Group Types
+export const JOIN_GROUP = 'JOIN_GROUP';
+export const JOIN_GROUP_COMPLETE = 'JOIN_GROUP_COMPLETE';
+
 // New Group Types
 export const ADD_GROUP = 'ADD_GROUP';
 export const POST_GROUP = 'POST_GROUP';

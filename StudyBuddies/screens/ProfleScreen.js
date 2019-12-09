@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, Button } from 'react-native'
 import { Auth } from 'aws-amplify';
+import { AsyncStorage } from 'react-native'
 
 export default class ProfleScreen extends Component {
     static NavigationOptions = {
@@ -11,9 +12,14 @@ export default class ProfleScreen extends Component {
         super(props);
     }
 
-    logout(){
+    async logout() {
         Auth.signOut({ global: true }).then(
-            this.props.navigation.navigate('Auth')
+            await AsyncStorage.removeItem('@UserId', (err) => {
+              console.log(err)
+            })
+            .then(() => {
+              this.props.navigation.navigate('Auth')
+            })
         )
         .catch((err)=> console.log('error logging out', err))
     }

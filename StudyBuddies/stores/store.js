@@ -12,16 +12,7 @@ import webSocketService from '../services/webSocketService'
 **/
 
 const initialState = {
-  users: [
-    {
-      id: 0,
-      info: {
-        email: 'edl5040@psu.edu',
-        firstName: 'Edward',
-        lastName: 'Lach'
-      }
-    }
-  ],
+  users: [],
   newGroup: {
     startDate: new Date(Date.now()),
     endDate: new Date(Date.now()),
@@ -29,11 +20,6 @@ const initialState = {
     startDateSelectedCount: 0,
     endDateSelected: false,
     endDateSelectedCount: 0,
-  },
-  groupSearch: {
-    searchTerm: "",
-    isUniversityRestricted: false,
-    results: [],
   },
   classes: [
     {
@@ -53,7 +39,16 @@ const initialState = {
     signin: {
       modalVisible: false,
     }
-  }
+  },
+  messages: {},
+  groups: {
+    loaded: false
+  },
+  groupSearch: {
+    searchTerm: "",
+    isUniversityRestricted: false,
+    results: [],
+  },
 };
 
 const middlewares = [

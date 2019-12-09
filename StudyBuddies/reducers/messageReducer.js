@@ -18,6 +18,8 @@ const messages = (state = [], action) => {
   switch (action.type) {
     case MSG_RECEIVED:
       return messageReceived(state, action);
+    default:
+      return state;
   }
 }
 

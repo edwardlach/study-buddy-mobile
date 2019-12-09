@@ -6,7 +6,7 @@ import HomeScreen from '../screens/HomeScreen'
 
 const mapStateToProps = state => {
     return {
-        state
+        groups: state.groups
     }
 }
 
