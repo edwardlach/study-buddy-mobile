@@ -15,7 +15,6 @@ const mapStateToProps = state => {
 const sendJoinRequest = async (dispatch, navigation, group) => {
     AsyncStorage.getItem('@UserId')
       .then((userId) => {
-        console.log("UserId returned as ", userId);
         membership = {
           userId: userId,
           groupId: group.groupId.toString()

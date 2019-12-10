@@ -7,6 +7,7 @@ import newGroup from './newGroupReducer'
 import groupSearch from './groupSearchReducer'
 import classes from './classesReducer'
 import messages from './messageReducer'
+import messageText from './messageTextReducer'
 
 const studyBuddyApp = combineReducers({
   users: users,
@@ -15,7 +16,8 @@ const studyBuddyApp = combineReducers({
   newGroup: newGroup,
   groupSearch: groupSearch,
   classes: classes,
-  messages: messages
+  messages: messages,
+  messageText: messageText
 });
 
 export default studyBuddyApp;

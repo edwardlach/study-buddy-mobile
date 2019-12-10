@@ -42,10 +42,12 @@ export const SET_DETAILS = 'SET_DETAILS';
 
 
 // Web Socket Types
-export const CONNECT = 'CONNECT';
-export const DISCONNECT = 'DISCONNECT';
-export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const CONNECT = '$connect';
+export const DISCONNECT = '$disconnect';
+export const IDENTIFY = 'identify';
+export const SEND_MESSAGE = 'sendmessage';
 export const MSG_RECEIVED = 'MSG_RECEIVED';
+export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
 
 
 // Form Types

@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, ScrollView, TextInput, KeyboardAvoidingView } from 'react-native'
-import { Icon } from 'react-native-elements'
+import {
+  Text,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  TextInput,
+  KeyboardAvoidingView } from 'react-native'
+import { IconButton } from '../components/IconButton';
+import { Icon } from 'react-native-elements';
 import { Header } from 'react-navigation';
+import { SEND_MESSAGE } from '../types/reduxTypes';
 // import {KeyboardAvoidingView} from 'react-native';
 // import { Header, NavigationActions } from 'react-navigation'
 // import {AudioRecorder, AudioUtils} from 'react-native-audio'
@@ -10,6 +19,15 @@ import { Header } from 'react-navigation';
 // import { ChatScreen } from 'react-native-easy-chat-ui'
 
 export default class CustomChatScreen extends Component {
+    payload() {
+      return {
+        action: SEND_MESSAGE,
+        userId: this.props.userId,
+        group: this.props.groupId,
+        message: this.props.messageText
+      }
+    }
+
     render() {
         return (
             // <View style={{  padding: 10 }} >
@@ -31,13 +49,21 @@ export default class CustomChatScreen extends Component {
                 </ScrollView>
 
                 <View style={{ flex: 1, flexDirection: "row", paddingHorizontal: 20, paddingVertical: 6 }}>
-                    <TextInput placeholder='enter your message' style={styles.message} maxLength={200} multiline={true} />
-                    <Icon
+                    <TextInput
+                      placeholder='enter your message'
+                      style={styles.message}
+                      maxLength={200}
+                      multiline={true}
+                      onChangeText={(text) => this.props.updateMessageText(text)}
+                      value={this.props.messageText} />
+                    <TouchableOpacity
+                      onPress={() => this.props.sendMessage(this.payload())}>
+                      <Icon
                         name='send'
                         type='material'
                         color='#517fa4'
-                        size={40}
-                    />
+                        size={40} />
+                    </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
         )
@@ -61,7 +87,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#1f9468',
         alignSelf: "flex-start",
         padding: 15,
-        borderRadius: 25    
+        borderRadius: 25
     },
     messageText: {
         fontSize: 18,

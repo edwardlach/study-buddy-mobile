@@ -166,6 +166,12 @@ const ComponentStyles = StyleSheet.create({
     borderBottomColor: buddyGray,
   },
 
+  // Message
+  message: {
+      fontSize: 18,
+      flex: 9,
+  },
+
 });
 
 export default ComponentStyles;

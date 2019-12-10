@@ -1,8 +1,10 @@
-import { connect } from 'react-redux'
-import { getGroupsByUserId } from '../actions/userActions'
-import { selectGroup } from '../actions/groupActions'
-import { AsyncStorage } from 'react-native'
-import HomeScreen from '../screens/HomeScreen'
+import { connect } from 'react-redux';
+import { getGroupsByUserId } from '../actions/userActions';
+import { selectGroup } from '../actions/groupActions';
+import { AsyncStorage } from 'react-native';
+import HomeScreen from '../screens/HomeScreen';
+import { CONNECT } from '../types/reduxTypes';
+import { wssConnect } from '../actions/messageActions';
 
 
 const mapStateToProps = state => {
@@ -16,6 +18,17 @@ const getUserId = async (dispatch) => {
     dispatch(getGroupsByUserId(id));
 }
 
+const connectToWebSocket = async (groupId, dispatch) => {
+  AsyncStorage.getItem('@UserId')
+    .then((userId) => {
+      dispatch(wssConnect({
+        action: CONNECT,
+        groupId: groupId,
+        userId: userId
+      }));
+    });
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         getUserGroups: async () => {
@@ -24,6 +37,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         groupSelected: (navigation, groupId) => {
           dispatch(selectGroup(groupId));
+          connectToWebSocket(groupId, dispatch);
           navigation.navigate("Chat");
         }
     }

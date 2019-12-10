@@ -40,7 +40,7 @@ const initialState = {
       modalVisible: false,
     }
   },
-  messages: {},
+  messages: [],
   groups: {
     loaded: false
   },

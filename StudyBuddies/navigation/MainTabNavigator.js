@@ -9,7 +9,7 @@ import ProfileScreen from '../screens/ProfleScreen'
 import GroupDetailsContainer from '../containers/GroupDetailsContainer';
 import HomeContainer from '../containers/HomeContainer';
 import TemplateChatScreen from '../screens/TemplateChatScreen';
-import CustomChatScreen from '../screens/CustomChatScreen';
+import CustomChatScreen from '../containers/ChatContainer';
 
 
 const config = Platform.select({
