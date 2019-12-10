@@ -7,6 +7,12 @@ import {
 
 let socket = null;
 
+/*
+  WebSocket API - https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
+  Useful resource on using websockets in middleware
+  https://dev.to/aduranil/how-to-use-websockets-with-redux-a-step-by-step-guide-to-writing-understanding-connecting-socket-middleware-to-your-project-km3
+*/
+
 const onMessage = next => (event) => {
     const payload = JSON.parse(event.data);
     const message = Message({

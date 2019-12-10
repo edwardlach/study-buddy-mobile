@@ -29,7 +29,11 @@ export default class HomeScreen extends React.Component {
               this.props.groups.groupList.map(
                 (group) => (
                   <View style={styles.container} key={group.id} >
-                    <TouchableOpacity style={styles.groupItem} onPress={()=> this.props.navigation.navigate('Chat')}>
+                    <TouchableOpacity
+                      style={styles.groupItem}
+                      onPress={()=> this.props.groupSelected(
+                                        this.props.navigation,
+                                        group.id)}>
                       <Text style={styles.title}>
                         {group.name}
                       </Text>

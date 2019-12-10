@@ -14,6 +14,7 @@ export const GET_GROUP_BY_USER_COMPLETE = 'GET_GROUP_BY_USER_COMPLETE';
 // Group Types
 export const JOIN_GROUP = 'JOIN_GROUP';
 export const JOIN_GROUP_COMPLETE = 'JOIN_GROUP_COMPLETE';
+export const GROUP_SELECTED = 'GROUP_SELECTED';
 
 // New Group Types
 export const ADD_GROUP = 'ADD_GROUP';

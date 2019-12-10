@@ -1,8 +1,8 @@
 import {
   GET_GROUP_BY_USER_COMPLETE,
-  JOIN_GROUP_COMPLETE} from "../types/reduxTypes";
+  JOIN_GROUP_COMPLETE,
+  GROUP_SELECTED} from "../types/reduxTypes";
 import { AsyncStorage } from 'react-native';
-import { UserGroup } from '../factories/UserGroupFactory';
 
 /**************** Helper Functions ****************/
 
@@ -29,7 +29,8 @@ const getUserGroupsSuccess = (state, action) => {
       {
         'name': element.groupName,
         'id': element.groupId,
-        'subject': element.subject.subject
+        'subject': element.subject.subject,
+        'selected': false
       }
     )
   });
@@ -43,11 +44,11 @@ const getUserGroupsSuccess = (state, action) => {
 }
 
 const joinGroup = (state, action) => {
-  console.log("Reducer: Join Group = ", JSON.stringify(action));
   var group = {
       'name': action.body.group.groupName,
       'id': action.body.group.groupId,
-      'subject': action.body.group.subject.subject
+      'subject': action.body.group.subject.subject,
+      'selected': false
   };
 
   // Make sure a group isn't loaded twice!
@@ -73,6 +74,29 @@ const joinGroup = (state, action) => {
   }
 }
 
+const selectGroup = (state, action) => {
+    list = state.groupList.map(group => {
+      if (group.id == action.groupId) {
+        return {
+          ...group,
+          selected: true
+        }
+      } else {
+        return {
+          ...group,
+          selected: false
+        }
+      }
+    });
+
+    return {
+      ...state,
+      groupList: [
+        ...list
+      ]
+    }
+}
+
 /**************** Reducer Function ****************/
 
 const groups = (state = [], action) => {
@@ -83,6 +107,8 @@ const groups = (state = [], action) => {
       return getUserGroupsSuccess(state, action);
     case JOIN_GROUP_COMPLETE:
       return joinGroup(state, action);
+    case GROUP_SELECTED:
+      return selectGroup(state, action);
     default:
       return state;
   }
