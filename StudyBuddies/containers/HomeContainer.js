@@ -4,7 +4,7 @@ import { selectGroup } from '../actions/groupActions';
 import { AsyncStorage } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import { CONNECT } from '../types/reduxTypes';
-import { wssConnect } from '../actions/messageActions';
+import { wsConnect } from '../actions/messageActions';
 
 
 const mapStateToProps = state => {
@@ -21,7 +21,7 @@ const getUserId = async (dispatch) => {
 const connectToWebSocket = async (groupId, dispatch) => {
   AsyncStorage.getItem('@UserId')
     .then((userId) => {
-      dispatch(wssConnect({
+      dispatch(wsConnect({
         action: CONNECT,
         groupId: groupId,
         userId: userId

@@ -12,7 +12,6 @@ import webSocketService from '../services/webSocketService'
 **/
 
 const initialState = {
-  users: [],
   newGroup: {
     startDate: new Date(Date.now()),
     endDate: new Date(Date.now()),

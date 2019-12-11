@@ -57,10 +57,9 @@ const getUserId = async (state, action) => {
   await AsyncStorage.setItem('@UserId', action.body.userId.toString());
 }
 
-
 /**************** Reducer Function ****************/
 
-const users = (state = [], action) => {
+const users = (state = {}, action) => {
   switch (action.type) {
     case ADD_USER:
       return addUser(state, action);
@@ -69,8 +68,7 @@ const users = (state = [], action) => {
     case GET_USER_COMPLETE:
       return getUserComplete(state, action);
     case FORM_SUBMIT.GET_USERID_COMPLETE:
-      getUserId(state, action);
-      return addUser(state, action);
+      return getUserId(state, action);
     case POST_USER_COMPLETE:
       return postUserComplete(state, action);
     default:

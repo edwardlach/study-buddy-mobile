@@ -5,14 +5,14 @@ import {
   UPDATE_MESSAGE
 } from '../types/reduxTypes';
 
-export const wssConnect = (message) => {
+export const wsConnect = (message) => {
   return {
     type: CONNECT,
     message: message
   }
 }
 
-export const wssDisconnect = () => {
+export const wsDisconnect = () => {
   return {
     type: DISCONNECT
   }

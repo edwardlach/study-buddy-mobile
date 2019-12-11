@@ -22,8 +22,7 @@ export default class CustomChatScreen extends Component {
     payload() {
       return {
         action: SEND_MESSAGE,
-        userId: this.props.userId,
-        group: this.props.groupId,
+        groupId: this.props.groupId,
         message: this.props.messageText
       }
     }
