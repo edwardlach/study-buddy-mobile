@@ -34,19 +34,20 @@ function displayIcon(type) {
 }
 
 
-const DetailsCard = ({color, type, text, height}) => {
+const DetailsCard = ({color, type, text, height, padding = 0}) => {
   return (
     <View style={[ComponentStyles.detailsCard,
       { backgroundColor:color,
         height: height,
         borderTopLeftRadius: height/5,
         borderTopRightRadius: height/5,
-        marginTop:-height/5
+        marginTop:-height/5,
+        paddingBottom: padding
       }]}>
       {displayIcon(type)}
       <Text style={[ComponentStyles.detailsText,
         { color: type==SUBJECT ? 'black' : 'white',
-          fontSize: type==SUBJECT ? 48 : 36,
+          fontSize: type==SUBJECT ? 45 : 36,
           fontWeight: type==SUBJECT ? '500' : 'normal',
         }]}>{text}</Text>
     </View>

@@ -24,7 +24,7 @@ export default class HomeScreen extends React.Component {
     if (this.props.groups.loaded) {
       if (this.props.groups.groupList != undefined) {
         return (
-          <ScrollView style={{paddingVertical : 10}}>
+          <ScrollView style={{padding : 10}}>
             {
               this.props.groups.groupList.map(
                 (group) => (
@@ -47,7 +47,7 @@ export default class HomeScreen extends React.Component {
           );
       } else {
         return (
-          <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+          <View style={{ flex: 1, justifyContent: "center", alignItems: "center"}}>
             <Text style={{ fontSize: 25 }}>No groups found, try joining some!</Text>
           </View>
         );
@@ -56,7 +56,7 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ fontSize: 25 }}>Loading user groups</Text>
+        <Text style={{ fontSize: 25, padding : 10 }}>Loading user groups</Text>
         <ActivityIndicator color='#346ea8' size="large" />
       </View>
     );

@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import { CONNECT } from '../types/reduxTypes';
 import { wsConnect, getMessages, clearMessages } from '../actions/messageActions';
 
+var userId = null;
 
 const mapStateToProps = state => {
     return {
@@ -14,8 +15,8 @@ const mapStateToProps = state => {
 }
 
 const getUserId = async (dispatch) => {
-    const id = await AsyncStorage.getItem('@UserId');
-    dispatch(getGroupsByUserId(id));
+    userId = await AsyncStorage.getItem('@UserId');
+    dispatch(getGroupsByUserId(userId));
 }
 
 const connectToWebSocket = async (groupId, dispatch) => {
@@ -33,14 +34,13 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getUserGroups: async () => {
             await getUserId(dispatch);
-            // dispatch(getGroupsByUserId(5));
         },
         groupSelected: (navigation, groupId) => {
           dispatch(clearMessages());
           dispatch(selectGroup(groupId));
           dispatch(getMessages(groupId));
           connectToWebSocket(groupId, dispatch);
-          navigation.navigate("Chat");
+          navigation.navigate("Chat", {userId});
         }
     }
 }

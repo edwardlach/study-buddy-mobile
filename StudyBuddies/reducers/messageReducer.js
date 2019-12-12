@@ -13,6 +13,10 @@ const messageReceived = (state, action) => {
 }
 
 const messagesReceived = (state, action) => {
+  if (action.body.message != null) {
+    alert(action.body.message);
+    return [...state]
+  }
   return [
     ...state,
     ...action.body

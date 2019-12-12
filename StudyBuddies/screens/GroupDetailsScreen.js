@@ -35,7 +35,8 @@ const GroupDetailsScreen = ({details, buttonPressed, navigation}) => {
         color={'transparent'}
         type={SUBJECT}
         text={details.subject.name}
-        height={Dimensions.get('screen').height/3} />
+        height={Dimensions.get('screen').height/3}
+        padding={5} />
       <DetailsCard
         color={buddyBlue}
         type={UNIVERSITY}
