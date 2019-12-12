@@ -4,7 +4,7 @@ import { selectGroup } from '../actions/groupActions';
 import { AsyncStorage } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import { CONNECT } from '../types/reduxTypes';
-import { wsConnect, getMessages } from '../actions/messageActions';
+import { wsConnect, getMessages, clearMessages } from '../actions/messageActions';
 
 
 const mapStateToProps = state => {
@@ -36,6 +36,7 @@ const mapDispatchToProps = (dispatch) => {
             // dispatch(getGroupsByUserId(5));
         },
         groupSelected: (navigation, groupId) => {
+          dispatch(clearMessages());
           dispatch(selectGroup(groupId));
           dispatch(getMessages(groupId));
           connectToWebSocket(groupId, dispatch);

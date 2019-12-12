@@ -1,6 +1,7 @@
 import {
   MSG_RECEIVED,
-  GET_MESSAGES_COMPLETE } from '../types/reduxTypes';
+  GET_MESSAGES_COMPLETE,
+  CLEAR_MESSAGES} from '../types/reduxTypes';
 
 /**************** Helper Functions ****************/
 
@@ -19,6 +20,8 @@ const messagesReceived = (state, action) => {
 }
 
 
+
+
 /**************** Reducer Function ****************/
 
 const messages = (state = [], action) => {
@@ -27,6 +30,8 @@ const messages = (state = [], action) => {
       return messageReceived(state, action);
     case GET_MESSAGES_COMPLETE:
       return messagesReceived(state, action);
+    case CLEAR_MESSAGES:
+      return [];
     default:
       return state;
   }

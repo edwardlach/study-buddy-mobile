@@ -3,7 +3,8 @@ import {
   DISCONNECT,
   SEND_MESSAGE,
   UPDATE_MESSAGE,
-  GET_MESSAGES
+  GET_MESSAGES,
+  CLEAR_MESSAGES
 } from '../types/reduxTypes';
 
 export const wsConnect = (message) => {
@@ -37,5 +38,11 @@ export const getMessages = (groupId) => {
   return {
     type: GET_MESSAGES,
     groupId: groupId
+  }
+}
+
+export const clearMessages = () => {
+  return {
+    type: CLEAR_MESSAGES
   }
 }

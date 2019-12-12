@@ -52,6 +52,7 @@ export const MSG_RECEIVED = 'MSG_RECEIVED';
 export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const GET_MESSAGES_COMPLETE = 'GET_MESSAGES_COMPLETE';
+export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
 
 
 // Form Types
