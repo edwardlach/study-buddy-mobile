@@ -4,6 +4,7 @@ import studyBuddyApp from '../reducers/studyBuddyReducers'
 import logger from 'redux-logger'
 import userService from '../services/userService'
 import groupService from '../services/groupService'
+import messageService from '../services/messageService'
 import webSocketService from '../services/webSocketService'
 
 /**
@@ -53,6 +54,7 @@ const initialState = {
 const middlewares = [
   userService,
   groupService,
+  messageService,
   webSocketService,
   logger,
 ]

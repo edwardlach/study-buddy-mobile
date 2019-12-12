@@ -19,14 +19,14 @@ const webSocketService = () => {
   const onMessage = next => (event) => {
       if (event.data != undefined) {
         const payload = JSON.parse(event.data);
-        const message = {
-          message: payload.message,
-          userId: payload.userId,
-          groupId: payload.groupId
-        };
+        // const message = {
+        //   message: payload.message,
+        //   userId: payload.userId,
+        //   groupId: payload.groupId
+        // };
         next({
           type: MSG_RECEIVED,
-          message: message
+          message: JSON.parse(event.data)
         });
       }
   }

@@ -2,7 +2,8 @@ import {
   CONNECT,
   DISCONNECT,
   SEND_MESSAGE,
-  UPDATE_MESSAGE
+  UPDATE_MESSAGE,
+  GET_MESSAGES
 } from '../types/reduxTypes';
 
 export const wsConnect = (message) => {
@@ -29,5 +30,12 @@ export const updateMessage = (text) => {
   return {
     type: UPDATE_MESSAGE,
     text: text
+  }
+}
+
+export const getMessages = (groupId) => {
+  return {
+    type: GET_MESSAGES,
+    groupId: groupId
   }
 }

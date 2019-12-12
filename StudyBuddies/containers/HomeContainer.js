@@ -4,7 +4,7 @@ import { selectGroup } from '../actions/groupActions';
 import { AsyncStorage } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import { CONNECT } from '../types/reduxTypes';
-import { wsConnect } from '../actions/messageActions';
+import { wsConnect, getMessages } from '../actions/messageActions';
 
 
 const mapStateToProps = state => {
@@ -37,6 +37,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         groupSelected: (navigation, groupId) => {
           dispatch(selectGroup(groupId));
+          dispatch(getMessages(groupId));
           connectToWebSocket(groupId, dispatch);
           navigation.navigate("Chat");
         }

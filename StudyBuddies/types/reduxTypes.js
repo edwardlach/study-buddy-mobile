@@ -47,7 +47,11 @@ export const DISCONNECT = '$disconnect';
 export const IDENTIFY = 'identify';
 export const SEND_MESSAGE = 'sendmessage';
 export const MSG_RECEIVED = 'MSG_RECEIVED';
+
+// Message Types
 export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
+export const GET_MESSAGES = 'GET_MESSAGES';
+export const GET_MESSAGES_COMPLETE = 'GET_MESSAGES_COMPLETE';
 
 
 // Form Types
