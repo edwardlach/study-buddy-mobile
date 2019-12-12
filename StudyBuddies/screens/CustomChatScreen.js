@@ -1,71 +1,67 @@
 import React, { Component } from 'react'
 import {
-  Text,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  ScrollView,
-  TextInput,
-  KeyboardAvoidingView } from 'react-native'
-import { IconButton } from '../components/IconButton';
+    Text,
+    StyleSheet,
+    View,
+    TouchableOpacity,
+    ScrollView,
+    TextInput,
+    KeyboardAvoidingView,
+    AsyncStorage,
+    ActivityIndicator
+} from 'react-native'
 import { Icon } from 'react-native-elements';
 import { Header } from 'react-navigation';
 import { SEND_MESSAGE } from '../types/reduxTypes';
-// import {KeyboardAvoidingView} from 'react-native';
-// import { Header, NavigationActions } from 'react-navigation'
-// import {AudioRecorder, AudioUtils} from 'react-native-audio'
-// import RNFS from 'react-native-fs'
-// import Sound from 'react-native-sound'
-// import { ChatScreen } from 'react-native-easy-chat-ui'
 
 export default class CustomChatScreen extends Component {
+
     payload() {
-      return {
-        action: SEND_MESSAGE,
-        groupId: this.props.groupId,
-        message: this.props.messageText
-      }
+        return {
+            action: SEND_MESSAGE,
+            groupId: this.props.groupId,
+            message: this.props.messageText
+        }
     }
 
     render() {
+        const userId = this.props.navigation.getParam('userId', '');
         return (
-            // <View style={{  padding: 10 }} >
             <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled keyboardVerticalOffset={Header.HEIGHT + 20}>
 
                 <ScrollView style={{ height: '80%', backgroundColor: '#cadce3', padding: 10 }}>
-                    <View style={styles.sentMessageView}>
-                        <Text style={styles.messageText}>this is a sent message</Text>
-                    </View>
-
-                    <View style={styles.sentMessageView}>
-                        <Text style={styles.messageText}>this is a longer sent message which should appear on multiple lines hopefully</Text>
-                    </View>
-
-                    <View style={styles.receivedMessageView}>
-                        <Text style={styles.messageText}>This is a received message</Text>
-                    </View>
-
+                    {
+                        this.props.messages.map(
+                            (message) => (
+                                <View key={message.messageId}>
+                                    <View style={message.userId == userId ? styles.sentMessageView : styles.receivedMessageView}>
+                                        <Text style={styles.messageText}>{message.message}</Text>
+                                    </View>
+                                </View>
+                            ))
+                    }
                 </ScrollView>
 
                 <View style={{ flex: 1, flexDirection: "row", paddingHorizontal: 20, paddingVertical: 6 }}>
                     <TextInput
-                      placeholder='enter your message'
-                      style={styles.message}
-                      maxLength={200}
-                      multiline={true}
-                      onChangeText={(text) => this.props.updateMessageText(text)}
-                      value={this.props.messageText} />
-                    <TouchableOpacity
-                      onPress={() => this.props.sendMessage(this.payload())}>
-                      <Icon
+                        placeholder='enter your message'
+                        style={styles.message}
+                        maxLength={200}
+                        multiline={true}
+                        onChangeText={(text) => this.props.updateMessageText(text)}
+                        value={this.props.messageText} />
+
+                    <Icon
                         name='send'
                         type='material'
                         color='#517fa4'
-                        size={40} />
-                    </TouchableOpacity>
+                        size={40}
+                        onPress={() => this.props.sendMessage(this.payload())} />
+
                 </View>
             </KeyboardAvoidingView>
         )
+
     }
 }
 
@@ -81,7 +77,10 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 25
     },
+
     receivedMessageView: {
+        flex: 1,
+        flexDirection: "row",
         marginVertical: 5,
         backgroundColor: '#1f9468',
         alignSelf: "flex-start",
