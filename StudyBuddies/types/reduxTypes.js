@@ -1,6 +1,6 @@
 // API URL
-export const API = "https://4b7jtysje3.execute-api.us-east-1.amazonaws.com/develop";
-export const WSS = "wss://j1g49nfi28.execute-api.us-east-1.amazonaws.com/dev";
+export const API = "https://bs4epgtlhf.execute-api.us-east-2.amazonaws.com/dev";
+export const WSS = "wss://0xj242xk57.execute-api.us-east-2.amazonaws.com/dev";
 
 // User Types
 export const SET_FIRST_NAME = 'SET_FIRST_NAME';
