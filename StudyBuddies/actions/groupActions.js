@@ -14,11 +14,12 @@ export const addGroup = (group) => {
   }
 }
 
-export const postGroup = (group) => {
+export const postGroup = (group, userId) => {
   return {
     type: POST_GROUP,
     id: nextGroupId++,
-    body: group
+    body: group,
+    userId: userId
   }
 }
 

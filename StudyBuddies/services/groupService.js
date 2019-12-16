@@ -27,7 +27,12 @@ export default groupService = store => next => action => {
       let postHeaders = {
         Accept: 'application/json',
       }
-      postApi('/groups', action.type, postHeaders, action.body)
+      postApi(
+        '/groups?creator=' + action.userId,
+         action.type,
+         postHeaders,
+         action.body
+       );
       break;
 
     case GET_GROUP:

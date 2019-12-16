@@ -7,12 +7,19 @@ import { AsyncStorage } from 'react-native';
 /**************** Helper Functions ****************/
 
 const groupPosted = (state, action) => {
-  return [
-    ...state,
-    {
-      ...action.body
-    }
-  ];
+  console.log(JSON.stringify(action));
+  return {
+    loaded: state.loaded,
+    groupList: [
+      ...state.groupList,
+      {
+        name: action.body.group.groupName,
+        id: action.body.group.groupId,
+        subject: action.body.group.subject.name,
+        selected: false
+      }
+    ]
+  };
 }
 
 const getUserGroupsSuccess = (state, action) => {

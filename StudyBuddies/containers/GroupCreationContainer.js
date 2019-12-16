@@ -5,16 +5,26 @@ import { updateSubjectOnNewGroup, updateNameOnNewGroup,
 } from '../actions/groupActions';
 import GroupCreationScreen from '../screens/GroupCreationScreen';
 import Group from '../factories/GroupFactory';
+import { AsyncStorage } from 'react-native';
 import { SUBJECT, UNIVERSITY, START_DATE,
    END_DATE, GROUP_NAME
 } from '../types/formTypes';
+
+const createGroup = async (dispatch, navigation, group) => {
+    AsyncStorage.getItem('@UserId')
+      .then((userId) => {
+        dispatch(postGroup(group, userId));
+        navigation.goBack();
+        navigation.navigate("Home");
+      });
+}
 
 const mapStateToProps = state => {
   return {
     group: state.newGroup,
     classes: state.classes,
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -49,9 +59,7 @@ const mapDispatchToProps = (dispatch) => {
         startDate: data.startDate,
         endDate: data.endDate
       });
-      dispatch(postGroup(group));
-      navigation.navigate("GroupSearch");
-      navigation.navigate("Home");
+      createGroup(dispatch, navigation, group);
     },
     selected: (field, selectedCount) => {
       switch(field) {
