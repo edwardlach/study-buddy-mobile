@@ -26,10 +26,14 @@ export default class CustomChatScreen extends Component {
 
     render() {
         const userId = this.props.navigation.getParam('userId', '');
-        return (
-            <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled keyboardVerticalOffset={Header.HEIGHT + 20}>
 
-                <ScrollView style={{ height: '80%', backgroundColor: '#cadce3', padding: 10 }}>
+        return (
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled keyboardVerticalOffset={Header.HEIGHT + 30}>
+
+                <ScrollView style={{ height: '80%', backgroundColor: '#cadce3' }} ref={ref => this.scrollView = ref}
+                    onContentSizeChange={(contentWidth, contentHeight) => {
+                        this.scrollView.scrollToEnd({ animated: true });
+                    }}>
                     {
                         this.props.messages.map(
                             (message) => (
@@ -56,7 +60,7 @@ export default class CustomChatScreen extends Component {
                         type='material'
                         color='#517fa4'
                         size={40}
-                        onPress={() => this.props.sendMessage(this.payload())} />
+                        onPress={() => { if (this.props.messageText && this.props.messageText.length > 0) this.props.sendMessage(this.payload()) }} />
 
                 </View>
             </KeyboardAvoidingView>
@@ -74,21 +78,20 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         backgroundColor: '#2b5599',
         alignSelf: "flex-end",
-        padding: 15,
-        borderRadius: 25
+        padding: 10,
+        borderRadius: 20,
+        marginLeft: 40
     },
-
     receivedMessageView: {
-        flex: 1,
-        flexDirection: "row",
         marginVertical: 5,
         backgroundColor: '#1f9468',
         alignSelf: "flex-start",
-        padding: 15,
-        borderRadius: 25
+        padding: 10,
+        borderRadius: 20,
+        marginRight: 40
     },
     messageText: {
-        fontSize: 18,
+        fontSize: 16,
         color: 'white'
     }
 })

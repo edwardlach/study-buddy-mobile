@@ -17,11 +17,20 @@ const getGroupId = state => {
 
 const mapStateToProps = state => {
   var groupId = getGroupId(state);
+
+  if (state.messages[0] == null) {
+    return {
+      messages: [],
+      groupId,
+      messageText: state.messageText
+    }
+  }
+
   return {
     messages: state.messages.filter(
       message => message.groupId === groupId
     ),
-    userId: AsyncStorage.getItem('@UserId'),
+    // userId: AsyncStorage.getItem('@UserId'),
     groupId: groupId,
     messageText: state.messageText
   }

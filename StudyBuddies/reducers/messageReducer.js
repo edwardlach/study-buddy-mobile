@@ -1,7 +1,8 @@
 import {
   MSG_RECEIVED,
   GET_MESSAGES_COMPLETE,
-  CLEAR_MESSAGES} from '../types/reduxTypes';
+  CLEAR_MESSAGES
+} from '../types/reduxTypes';
 
 /**************** Helper Functions ****************/
 
@@ -13,9 +14,11 @@ const messageReceived = (state, action) => {
 }
 
 const messagesReceived = (state, action) => {
+  console.log('state when the chat is empty', state);
   if (action.body.message != null) {
-    alert(action.body.message);
-    return [...state]
+    if (state.length == 0)
+      return [null]
+    return [...state];
   }
   return [
     ...state,

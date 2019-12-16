@@ -3,18 +3,10 @@ import React from 'react';
 import {
   View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, ScrollView, Button
 } from 'react-native';
+// import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
 import { AsyncStorage } from 'react-native'
 
 export default class HomeScreen extends React.Component {
-
-  constructor(props) {
-    super(props);
-    // this.props.getUserGroups();
-  }
-
-  // async componentWillMount() {
-  //   await this.props.getUserGroups();
-  // }
 
   componentDidMount() {
     this.props.getUserGroups();
@@ -24,16 +16,16 @@ export default class HomeScreen extends React.Component {
     if (this.props.groups.loaded) {
       if (this.props.groups.groupList != undefined) {
         return (
-          <ScrollView style={{padding : 10}}>
+          <ScrollView style={{ padding: 10 }}>
             {
               this.props.groups.groupList.map(
                 (group) => (
                   <View style={styles.container} key={group.id} >
                     <TouchableOpacity
                       style={styles.groupItem}
-                      onPress={()=> this.props.groupSelected(
-                                        this.props.navigation,
-                                        group.id)}>
+                      onPress={() => this.props.groupSelected(
+                        this.props.navigation,
+                        group.id)}>
                       <Text style={styles.title}>
                         {group.name}
                       </Text>
@@ -43,11 +35,11 @@ export default class HomeScreen extends React.Component {
                     </TouchableOpacity>
                   </View>
                 ))}
-            </ScrollView>
-          );
+          </ScrollView>
+        );
       } else {
         return (
-          <View style={{ flex: 1, justifyContent: "center", alignItems: "center"}}>
+          <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
             <Text style={{ fontSize: 25 }}>No groups found, try joining some!</Text>
           </View>
         );
@@ -56,9 +48,12 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ fontSize: 25, padding : 10 }}>Loading user groups</Text>
+        <Text style={{ fontSize: 25, padding: 10 }}>Loading user groups</Text>
         <ActivityIndicator color='#346ea8' size="large" />
+        {/* <Bubbles size={10} color="#FFF" /> */}
       </View>
+
+
     );
 
 
