@@ -6,14 +6,23 @@ import { connect } from 'react-redux'
 import Auth from '@aws-amplify/auth';
 
 let navigation = null;
+
+const getUserIDFunc = (email, dispatch) => new Promise((resolve, reject) => {
+    dispatch(getUserId(email));
+    resolve();
+});
+
 //Amplify sign in
 const signIn = (email, password, dispatch) => {
     Auth.signIn(email, password)
         .then(
             () => {
-                alert('Congrats! You are now signed in');
-                dispatch(getUserId(email));
-                navigation.navigate('App');
+                getUserIDFunc(email, dispatch).then(
+                    () => {
+                        alert('Congrats! You are now signed in');
+                        navigation.navigate('App');
+                    }
+                );
             } //success
         )
         .catch(

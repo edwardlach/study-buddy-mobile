@@ -60,7 +60,7 @@ export default class HomeScreen extends React.Component {
   };
 
   static navigationOptions = {
-    title: 'Your Groups',
+    title: 'Groups',
   };
 }
 
