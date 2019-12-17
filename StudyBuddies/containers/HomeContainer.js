@@ -9,14 +9,16 @@ import { wsConnect, getMessages, clearMessages } from '../actions/messageActions
 var userId = null;
 
 const mapStateToProps = state => {
-    return {
-        groups: state.groups
-    }
+  return {
+    groups: state.groups
+  }
 }
 
 const getUserId = async (dispatch) => {
+  setTimeout(async function () {
     userId = await AsyncStorage.getItem('@UserId');
     dispatch(getGroupsByUserId(userId));
+  }, 500);
 }
 
 const connectToWebSocket = async (groupId, dispatch) => {
@@ -31,21 +33,21 @@ const connectToWebSocket = async (groupId, dispatch) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        getUserGroups: async () => {
-            await getUserId(dispatch);
-        },
-        groupSelected: (navigation, groupId) => {
-          dispatch(clearMessages());
-          dispatch(selectGroup(groupId));
-          dispatch(getMessages(groupId));
-          connectToWebSocket(groupId, dispatch);
-          navigation.navigate("Chat", {userId});
-        }
+  return {
+    getUserGroups: async () => {
+      await getUserId(dispatch);
+    },
+    groupSelected: (navigation, groupId) => {
+      dispatch(clearMessages());
+      dispatch(selectGroup(groupId));
+      dispatch(getMessages(groupId));
+      connectToWebSocket(groupId, dispatch);
+      navigation.navigate("Chat", { userId });
     }
+  }
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(HomeScreen)

@@ -1,10 +1,14 @@
 import React from 'react'
 import {
-    View, Button, TextInput, Text, Modal
+    View, Button, TextInput, Text, Modal, AsyncStorage
 } from 'react-native'
 import registrationStyles from '../styles/RegistrationStyles'
 
 export default class RegistrationScreen extends React.Component {
+    constructor(props){
+        super(props);
+        AsyncStorage.clear();
+    }
     render() {
         return (
             <View style={{ flex: 1 }}>

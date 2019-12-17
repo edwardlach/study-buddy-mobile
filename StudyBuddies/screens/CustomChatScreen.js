@@ -8,13 +8,14 @@ import {
     TextInput,
     KeyboardAvoidingView,
     AsyncStorage,
-    ActivityIndicator
+    ActivityIndicator,
+    Keyboard
 } from 'react-native'
 import { Icon } from 'react-native-elements';
 import { Header } from 'react-navigation';
 import { SEND_MESSAGE } from '../types/reduxTypes';
 
-export default class CustomChatScreen extends Component {
+export default class CustomChatScreen extends React.Component {
 
     payload() {
         return {
@@ -37,7 +38,12 @@ export default class CustomChatScreen extends Component {
                     {
                         this.props.messages.map(
                             (message) => (
-                                <View key={message.messageId}>
+                                <View key={message.messageId} style={{ marginHorizontal: 3 }}>
+                                    {
+                                        message.userId != userId &&
+                                        <Text style={{ fontSize: 16, marginStart: 3 }}>{message.user.firstName[0] + '.' + message.user.lastName}
+                                        </Text>
+                                    }
                                     <View style={message.userId == userId ? styles.sentMessageView : styles.receivedMessageView}>
                                         <Text style={styles.messageText}>{message.message}</Text>
                                     </View>
@@ -60,7 +66,12 @@ export default class CustomChatScreen extends Component {
                         type='material'
                         color='#517fa4'
                         size={40}
-                        onPress={() => { if (this.props.messageText && this.props.messageText.length > 0) this.props.sendMessage(this.payload()) }} />
+                        onPress={() => {
+                            if (this.props.messageText && this.props.messageText.length > 0) {
+                                Keyboard.dismiss();
+                                this.props.sendMessage(this.payload())
+                            }
+                        }} />
 
                 </View>
             </KeyboardAvoidingView>

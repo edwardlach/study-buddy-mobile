@@ -14,7 +14,6 @@ const messageReceived = (state, action) => {
 }
 
 const messagesReceived = (state, action) => {
-  console.log('state when the chat is empty', state);
   if (action.body.message != null) {
     if (state.length == 0)
       return [null]

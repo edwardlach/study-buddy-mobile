@@ -7,22 +7,13 @@ import Auth from '@aws-amplify/auth';
 
 let navigation = null;
 
-const getUserIDFunc = (email, dispatch) => new Promise((resolve, reject) => {
-    dispatch(getUserId(email));
-    resolve();
-});
-
 //Amplify sign in
 const signIn = (email, password, dispatch) => {
     Auth.signIn(email, password)
         .then(
             () => {
-                getUserIDFunc(email, dispatch).then(
-                    () => {
-                        alert('Congrats! You are now signed in');
-                        navigation.navigate('App');
-                    }
-                );
+                dispatch(getUserId(email));
+                navigation.navigate('App');
             } //success
         )
         .catch(
@@ -42,6 +33,7 @@ const confirmAuth = (email, code, dispatch) => {
         .then((response) => {
             changeModalVisbility(dispatch, false);
             alert('Congrats! You are now confirmed');
+            dispatch(getUserId(email));
             navigation.navigate('App');
         }
         ).catch(

@@ -42,6 +42,7 @@ const initialState = {
   },
   messages: [],
   groups: {
+    groupList: [],
     loaded: false
   },
   groupSearch: {
