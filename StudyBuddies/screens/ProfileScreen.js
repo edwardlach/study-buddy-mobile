@@ -3,25 +3,13 @@ import { Text, StyleSheet, View, Button } from 'react-native'
 import { Auth } from 'aws-amplify';
 import { AsyncStorage } from 'react-native'
 
-export default class ProfleScreen extends Component {
+export default class ProfileScreen extends Component {
     static NavigationOptions = {
 
     }
 
     constructor(props) {
         super(props);
-    }
-
-    async logout() {
-        Auth.signOut({ global: true }).then(
-            await AsyncStorage.removeItem('@UserId', (err) => {
-              console.log(err)
-            })
-            .then(() => {
-              this.props.navigation.navigate('Auth')
-            })
-        )
-        .catch((err)=> console.log('error logging out', err))
     }
 
     async componentDidMount() {
@@ -40,7 +28,7 @@ export default class ProfleScreen extends Component {
                 <Button
                     title='logout'
                     onPress={() => {
-                        this.logout();
+                        this.props.logout(this.props.navigation);
                     }} />
             </View>
         )

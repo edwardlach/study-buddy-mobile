@@ -1,7 +1,8 @@
 import {
   GET_GROUP_BY_USER_COMPLETE,
   JOIN_GROUP_COMPLETE,
-  GROUP_SELECTED} from "../types/reduxTypes";
+  GROUP_SELECTED,
+  CLEAR_GROUPS} from "../types/reduxTypes";
 import { AsyncStorage } from 'react-native';
 
 /**************** Helper Functions ****************/
@@ -104,6 +105,12 @@ const selectGroup = (state, action) => {
     }
 }
 
+const clearGroups = (state, action) => {
+  return {
+    loaded: false
+  }
+}
+
 /**************** Reducer Function ****************/
 
 const groups = (state = [], action) => {
@@ -116,6 +123,8 @@ const groups = (state = [], action) => {
       return joinGroup(state, action);
     case GROUP_SELECTED:
       return selectGroup(state, action);
+    case CLEAR_GROUPS:
+      return clearGroups(state, action);
     default:
       return state;
   }

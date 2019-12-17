@@ -5,7 +5,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import GroupCreationContainer from '../containers/GroupCreationContainer';
 import SearchContainer from '../containers/SearchContainer';
 import ResultsContainer from '../containers/ResultsContainer';
-import ProfileScreen from '../screens/ProfleScreen'
+import ProfileScreen from '../containers/ProfileScreenContainer';
 import GroupDetailsContainer from '../containers/GroupDetailsContainer';
 import HomeContainer from '../containers/HomeContainer';
 import TemplateChatScreen from '../screens/TemplateChatScreen';
