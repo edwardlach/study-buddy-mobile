@@ -7,10 +7,16 @@ import {
 /**************** Helper Functions ****************/
 
 const messageReceived = (state, action) => {
-  return [
-    ...state,
-    action.message
-  ];
+  if(state[0] == null) {
+    return [
+      action.message
+    ];
+  } else {
+    return [
+      ...state,
+      action.message
+    ];
+  }
 }
 
 const messagesReceived = (state, action) => {
