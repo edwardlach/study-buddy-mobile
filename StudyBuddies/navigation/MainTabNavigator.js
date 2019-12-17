@@ -27,14 +27,14 @@ const HomeStack = createStackNavigator(
 );
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: 'My Groups',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-home`
-          : 'md-home'
+          ? `ios-people`
+          : 'md-people'
       }
     />
   ),
@@ -62,14 +62,28 @@ JoinGroupStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-people`
-          : 'md-people'
+          ? `ios-add-circle`
+          : 'md-add-circle'
       }
     />
   ),
 }
 
 JoinGroupStack.path = '';
+
+ProfileScreen.navigationOptions = {
+  tabBarLabel: 'Profile',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-person`
+          : 'md-person'
+      }
+    />
+  ),
+}
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
