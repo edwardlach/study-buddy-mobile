@@ -1,6 +1,9 @@
 import { postApiGenerator } from './postApiGenerator';
 import { getApiGenerator } from './getApiGenerator';
-import { FORM_SUBMIT, GET_GROUP_BY_USER } from '../types/reduxTypes'
+import {
+  FORM_SUBMIT,
+  GET_GROUP_BY_USER,
+  GET_GROUPS_BY_EMAIL} from '../types/reduxTypes'
 
 export default userService = store => next => action => {
   next(action);
@@ -39,6 +42,14 @@ export default userService = store => next => action => {
       }
       console.log('group membership sending', action);
       getApi(`/users/${action.userId}/groupmemberships`, action.type, getHeaders);
+      break;
+
+    case GET_GROUPS_BY_EMAIL:
+      getApi = getApiGenerator(next);
+      getHeaders = {
+        Accept: 'application/json'
+      }
+      getApi(`/groupmembership?email=${action.email}`, action.type, getHeaders);
       break;
 
     case FORM_SUBMIT.GET_USERID:

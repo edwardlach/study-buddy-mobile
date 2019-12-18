@@ -1,5 +1,5 @@
 import { signinValueChange } from '../actions/formActions'
-import { getUserId } from '../actions/userActions'
+import { getUserId, getGroupsByEmail } from '../actions/userActions'
 import SigninScreen from '../screens/SigninScreen'
 import { setModalVisibility } from '../actions/formActions'
 import { connect } from 'react-redux'
@@ -13,6 +13,7 @@ const signIn = (email, password, dispatch) => {
         .then(
             () => {
                 dispatch(getUserId(email));
+                dispatch(getGroupsByEmail(email));
                 navigation.navigate('App');
             } //success
         )

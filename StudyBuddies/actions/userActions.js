@@ -1,6 +1,7 @@
 import {
   ADD_USER, SET_FIRST_NAME, GET_USER,
-  GET_USER_COMPLETE, POST_USER, FORM_SUBMIT, GET_GROUP_BY_USER
+  GET_USER_COMPLETE, POST_USER, FORM_SUBMIT, GET_GROUP_BY_USER,
+  GET_GROUPS_BY_EMAIL
 } from '../types/reduxTypes';
 
 let nextUserId = 0
@@ -38,6 +39,13 @@ export const getGroupsByUserId = (userId) => {
   return {
     type: GET_GROUP_BY_USER,
     userId
+  }
+}
+
+export const getGroupsByEmail = (email) => {
+  return {
+    type: GET_GROUPS_BY_EMAIL,
+    email: email
   }
 }
 

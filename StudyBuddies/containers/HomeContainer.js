@@ -15,10 +15,8 @@ const mapStateToProps = state => {
 }
 
 const getUserId = async (dispatch) => {
-  setTimeout(async function () {
-    userId = await AsyncStorage.getItem('@UserId');
-    dispatch(getGroupsByUserId(userId));
-  }, 500);
+  userId = await AsyncStorage.getItem('@UserId');
+  dispatch(getGroupsByUserId(userId));
 }
 
 const connectToWebSocket = async (groupId, dispatch) => {

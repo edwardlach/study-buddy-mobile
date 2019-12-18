@@ -1,5 +1,6 @@
 import {
   GET_GROUP_BY_USER_COMPLETE,
+  GET_GROUPS_BY_EMAIL_COMPLETE,
   JOIN_GROUP_COMPLETE,
   GROUP_SELECTED,
   CLEAR_GROUPS
@@ -133,6 +134,7 @@ const groups = (state = [], action) => {
   switch (action.type) {
     case 'POST_GROUP_COMPLETE':
       return groupPosted(state, action);
+    case GET_GROUPS_BY_EMAIL_COMPLETE:
     case GET_GROUP_BY_USER_COMPLETE:
       return getUserGroupsSuccess(state, action);
     case JOIN_GROUP_COMPLETE:
