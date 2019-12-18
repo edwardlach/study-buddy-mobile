@@ -14,7 +14,7 @@ export default class HomeScreen extends React.Component {
 
   render() {
     if (this.props.groups.loaded) {
-      if (this.props.groups.groupList != undefined) {
+      if (this.props.groups.groupList != undefined && this.props.groups.groupList.length > 0) {
         return (
           <ScrollView style={{ padding: 10 }}>
             {
@@ -77,15 +77,18 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: '#346ea8',
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+
   },
   title: {
     fontSize: 25,
-    color: 'white'
+    color: 'white',
+    textAlign: "center"
   },
   subscript: {
     fontSize: 16,
-    color: 'white'
+    color: 'white',
+    textAlign: "center"
   }
 });
 

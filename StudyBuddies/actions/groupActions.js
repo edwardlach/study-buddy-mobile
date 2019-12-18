@@ -2,7 +2,7 @@ import { ADD_GROUP, UPDATE_SUBJECT_ON_NEW_GROUP, UPDATE_UNIVERSITY_ON_NEW_GROUP,
   UPDATE_START_DATE_ON_NEW_GROUP, UPDATE_END_DATE_ON_NEW_GROUP,
   NEW_GROUP_START_DATE_SELECTED, NEW_GROUP_END_DATE_SELECTED, POST_GROUP,
   UPDATE_NAME_ON_NEW_GROUP, UPDATE_SUBJECT_ID_ON_NEW_GROUP, JOIN_GROUP,
-  GROUP_SELECTED, CLEAR_GROUPS
+  GROUP_SELECTED, CLEAR_GROUPS, LEAVE_GROUP
  } from '../types/reduxTypes';
 
 let nextGroupId = 0
@@ -89,6 +89,13 @@ export const joinGroup = (joinRequest) => {
 export const selectGroup = (groupId) => {
   return {
     type: GROUP_SELECTED,
+    groupId: groupId
+  }
+}
+
+export const LeaveGroup = (groupId) => {
+  return {
+    type: LEAVE_GROUP,
     groupId: groupId
   }
 }

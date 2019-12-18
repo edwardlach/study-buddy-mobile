@@ -2,17 +2,31 @@ import {
   GET_GROUP_BY_USER_COMPLETE,
   JOIN_GROUP_COMPLETE,
   GROUP_SELECTED,
-  CLEAR_GROUPS} from "../types/reduxTypes";
+  CLEAR_GROUPS
+} from "../types/reduxTypes";
 import { AsyncStorage } from 'react-native';
 
 /**************** Helper Functions ****************/
 
 const groupPosted = (state, action) => {
   console.log(JSON.stringify(action));
+  if (state.groupList != null) {
+    return {
+      loaded: state.loaded,
+      groupList: [
+        ...state.groupList,
+        {
+          name: action.body.group.groupName,
+          id: action.body.group.groupId,
+          subject: action.body.group.subject.name,
+          selected: false
+        }
+      ]
+    };
+  }
   return {
     loaded: state.loaded,
     groupList: [
-      ...state.groupList,
       {
         name: action.body.group.groupName,
         id: action.body.group.groupId,
@@ -21,6 +35,7 @@ const groupPosted = (state, action) => {
       }
     ]
   };
+
 }
 
 const getUserGroupsSuccess = (state, action) => {
@@ -53,10 +68,10 @@ const getUserGroupsSuccess = (state, action) => {
 
 const joinGroup = (state, action) => {
   var group = {
-      'name': action.body.group.groupName,
-      'id': action.body.group.groupId,
-      'subject': action.body.group.subject.subject,
-      'selected': false
+    'name': action.body.group.groupName,
+    'id': action.body.group.groupId,
+    'subject': action.body.group.subject.subject,
+    'selected': false
   };
 
   // Make sure a group isn't loaded twice!
@@ -83,31 +98,32 @@ const joinGroup = (state, action) => {
 }
 
 const selectGroup = (state, action) => {
-    list = state.groupList.map(group => {
-      if (group.id == action.groupId) {
-        return {
-          ...group,
-          selected: true
-        }
-      } else {
-        return {
-          ...group,
-          selected: false
-        }
+  list = state.groupList.map(group => {
+    if (group.id == action.groupId) {
+      return {
+        ...group,
+        selected: true
       }
-    });
-
-    return {
-      ...state,
-      groupList: [
-        ...list
-      ]
+    } else {
+      return {
+        ...group,
+        selected: false
+      }
     }
+  });
+
+  return {
+    ...state,
+    groupList: [
+      ...list
+    ]
+  }
 }
 
 const clearGroups = (state, action) => {
   return {
-    loaded: false
+    loaded: false,
+    groupList: []
   }
 }
 
