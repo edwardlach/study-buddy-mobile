@@ -44,18 +44,15 @@ export default class HomeScreen extends React.Component {
           </View>
         );
       }
+    } else {
+      return (
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+          <Text style={{ fontSize: 25, padding: 10 }}>Loading user groups</Text>
+          <ActivityIndicator color='#346ea8' size="large" />
+          {/* <Bubbles size={10} color="#FFF" /> */}
+        </View>
+      );
     }
-
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ fontSize: 25, padding: 10 }}>Loading user groups</Text>
-        <ActivityIndicator color='#346ea8' size="large" />
-        {/* <Bubbles size={10} color="#FFF" /> */}
-      </View>
-
-
-    );
-
 
   };
 
