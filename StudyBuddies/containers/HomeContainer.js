@@ -21,11 +21,12 @@ const getUserId = async (dispatch) => {
 
 const connectToWebSocket = async (groupId, dispatch) => {
   AsyncStorage.getItem('@UserId')
-    .then((userId) => {
+    .then((user) => {
+      userId = user
       dispatch(wsConnect({
         action: CONNECT,
         groupId: groupId,
-        userId: userId
+        userId: user
       }));
     });
 }

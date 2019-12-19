@@ -8,8 +8,8 @@ import { AsyncStorage } from 'react-native'
 
 export default class HomeScreen extends React.Component {
 
-  componentDidMount() {
-    this.props.getUserGroups();
+  async componentDidMount() {
+    await this.props.getUserGroups();
   }
 
   render() {

@@ -53,7 +53,7 @@ const getUserGroupsSuccess = (state, action) => {
       {
         'name': element.groupName,
         'id': element.groupId,
-        'subject': element.subject.subject,
+        'subject': element.subject.name,
         'selected': false
       }
     )
@@ -71,10 +71,10 @@ const joinGroup = (state, action) => {
   var group = {
     'name': action.body.group.groupName,
     'id': action.body.group.groupId,
-    'subject': action.body.group.subject.subject,
+    'subject': action.body.group.subject.name,
     'selected': false
   };
-
+ 
   // Make sure a group isn't loaded twice!
   var alreadyInList = false;
   if (state.groupList != undefined) {
